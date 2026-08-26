@@ -1,0 +1,164 @@
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 15 observations removed because of NA values (RHS: 15).
+       82/85/0 fixed-effect singletons were removed (166 observations).
+NOTE: 92/103/0 fixed-effect singletons were removed (192 observations).
+NOTES: 69 observations removed because of NA values (RHS: 69).
+       80/88/0 fixed-effect singletons were removed (166 observations).
+NOTES: 18 observations removed because of NA values (RHS: 18).
+       94/97/0 fixed-effect singletons were removed (188 observations).
+NOTES: 69 observations removed because of NA values (RHS: 69).
+       80/88/0 fixed-effect singletons were removed (166 observations).
+NOTES: 18 observations removed because of NA values (RHS: 18).
+       94/97/0 fixed-effect singletons were removed (188 observations).
+NOTES: 69 observations removed because of NA values (RHS: 69).
+       80/88/0 fixed-effect singletons were removed (166 observations).
+NOTES: 18 observations removed because of NA values (RHS: 18).
+       94/97/0 fixed-effect singletons were removed (188 observations).
+NOTES: 69 observations removed because of NA values (RHS: 69).
+       80/88/0 fixed-effect singletons were removed (166 observations).
+NOTES: 18 observations removed because of NA values (RHS: 18).
+       94/97/0 fixed-effect singletons were removed (188 observations).
+NOTES: 69 observations removed because of NA values (RHS: 69).
+       80/88/0 fixed-effect singletons were removed (166 observations).
+NOTES: 18 observations removed because of NA values (RHS: 18).
+       94/97/0 fixed-effect singletons were removed (188 observations).
+NOTES: 69 observations removed because of NA values (RHS: 69).
+       80/88/0 fixed-effect singletons were removed (166 observations).
+NOTES: 18 observations removed because of NA values (RHS: 18).
+       94/97/0 fixed-effect singletons were removed (188 observations).
+NOTES: 69 observations removed because of NA values (RHS: 69).
+       80/88/0 fixed-effect singletons were removed (166 observations).
+NOTES: 18 observations removed because of NA values (RHS: 18).
+       94/97/0 fixed-effect singletons were removed (188 observations).
+NOTES: 69 observations removed because of NA values (RHS: 69).
+       80/88/0 fixed-effect singletons were removed (166 observations).
+NOTES: 18 observations removed because of NA values (RHS: 18).
+       94/97/0 fixed-effect singletons were removed (188 observations).
+NOTES: 69 observations removed because of NA values (RHS: 69).
+       80/88/0 fixed-effect singletons were removed (166 observations).
+NOTES: 18 observations removed because of NA values (RHS: 18).
+       94/97/0 fixed-effect singletons were removed (188 observations).
+NOTES: 69 observations removed because of NA values (RHS: 69).
+       80/88/0 fixed-effect singletons were removed (166 observations).
+NOTES: 18 observations removed because of NA values (RHS: 18).
+       94/97/0 fixed-effect singletons were removed (188 observations).
+NOTES: 69 observations removed because of NA values (RHS: 69).
+       80/88/0 fixed-effect singletons were removed (166 observations).
+NOTES: 18 observations removed because of NA values (RHS: 18).
+       94/97/0 fixed-effect singletons were removed (188 observations).
+
+=== POOLED 2024+2025 FULL BATTERY (n_full=3747, n>50=1925) ===
+Interaction-term p-values; FE = focal+conditional+season; * = p<0.05
+Bonferroni threshold across 34 specs: p < 0.00147 
+
+                       spec  full_est full_p    hi_est   hi_p full_sig hi_sig
+       cond_pu x nitro_dist  2.19e-03 0.0920  3.65e-03 0.0715                
+       cond_ld x focal_tilt  1.45e-03 0.1893  2.86e-03 0.0783                
+   cond_contact x focal_slg  1.22e-03 0.3366  2.94e-03 0.0797                
+       cond_take x focal_aa  1.40e-03 0.2499  2.67e-03 0.1212                
+      cond_obp x nitro_dist -5.98e-04 0.6158 -3.18e-03 0.1519                
+       cond_obp x focal_slg  8.87e-04 0.3912  2.03e-03 0.1519                
+       cond_ad x nitro_dist -1.35e-03 0.2367 -2.15e-03 0.1986                
+      cond_chase x focal_ad  1.74e-03 0.1179  1.89e-03 0.2371                
+   focal_chase x nitro_dist -1.59e-03 0.1948 -1.87e-03 0.2685                
+   focal_swing x nitro_dist -1.31e-03 0.2337 -1.57e-03 0.2727                
+         cond_gb x focal_aa -2.02e-03 0.0902 -1.78e-03 0.2857                
+    cond_obp x focal_barrel  3.75e-04 0.7659  1.73e-03 0.3604                
+        cond_slg x focal_ss -2.41e-04 0.8558  1.35e-03 0.4259                
+   signed contact gap x slg -1.07e-03 0.4118 -1.31e-03 0.4306                
+      focal_chase x cond_aa  1.42e-05 0.9912 -1.45e-03 0.4485                
+       cond_fb x focal_tilt  1.56e-03 0.1930  1.14e-03 0.4557                
+     focal_slg x nitro_dist  2.91e-04 0.7824  9.71e-04 0.4623                
+ |contact gap| x nitro_dist  8.59e-04 0.4321  1.03e-03 0.5474                
+    |swing gap| x focal_slg -1.62e-03 0.1291 -8.31e-04 0.6173                
+    |swstr gap| x focal_slg -1.51e-03 0.1691 -7.31e-04 0.6254                
+    cond_barrel x focal_slg -2.39e-04 0.8152  6.73e-04 0.6379                
+       cond_gb x nitro_dist -4.38e-04 0.7217 -8.05e-04 0.6710                
+  |contact gap| x focal_slg  1.46e-04 0.9044  5.64e-04 0.7129                
+     cond_take x nitro_dist -3.83e-04 0.7351 -5.60e-04 0.7477                
+      cond_take x focal_slg  1.33e-04 0.8892 -4.80e-04 0.7561                
+         focal_gb x cond_aa  1.69e-04 0.8876 -4.65e-04 0.7835                
+       focal_fb x cond_tilt -5.56e-04 0.6140 -3.88e-04 0.8082                
+      cond_swstr x focal_ad -3.52e-04 0.7588  3.19e-04 0.8417                
+    |chase gap| x focal_slg -6.99e-04 0.4634 -2.60e-04 0.8527                
+       focal_tilt x cond_aa -1.53e-04 0.9000 -2.59e-04 0.8746                
+         cond_ss x focal_aa  4.53e-04 0.7372  2.42e-04 0.9085                
+    focal_swstr x cond_tilt  1.22e-03 0.2984 -1.57e-04 0.9264                
+  cond_contact x nitro_dist  1.26e-05 0.9918  1.56e-04 0.9318                
+    cond_swstr x nitro_dist  1.50e-04 0.9001  4.42e-05 0.9799                

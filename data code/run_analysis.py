@@ -14,10 +14,9 @@ from swing_and_battracking_metrics import add_comprehensive_statcast_metrics
 baselines = hitter_baselines_from_pa_df(df, min_pa=50)
 
 # Add comprehensive swing and bat tracking metrics
-# This adds 10 new columns:
+# This adds 8 new columns:
 #   - Swing_pct, Contact_pct, SweetSpot_pct, SwStr_pct, Chase_pct
 #   - Attack_Angle_median, Attack_Direction_median, Swing_Path_Tilt_median
-#   - Stance_Angle_median, Distance_Off_Plate_median
 baselines = add_comprehensive_statcast_metrics(
     baselines,
     start="2025-03-18",

@@ -1,0 +1,1528 @@
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+
+==============================
+ [1] Sweet spot (prior) x Attack angle (focal) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_aa' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                     Estimate Std. Error  t value Pr(>|t|)    
+z_cond_ss            0.857423   8.573779 0.100005 0.920397    
+z_cond_ss:z_focal_aa 0.004584   0.002501 1.832750 0.067684 .  
+... 1 variable was removed because of collinearity (z_focal_aa)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036212     Adj. R2: 0.035103
+                 Within R2: 0.004611
+
+==============================
+ [2] Line drive (prior) x Swing tilt (focal) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_tilt' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                       Estimate Std. Error  t value Pr(>|t|) 
+z_cond_ld              0.989759  10.020627 0.098772  0.92138 
+z_cond_ld:z_focal_tilt 0.003943   0.002412 1.634717  0.10300 
+... 1 variable was removed because of collinearity (z_focal_tilt)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036228     Adj. R2: 0.034262
+                 Within R2: 0.003743
+
+==============================
+ [3] Chase rate (prior) x Attack direction (focal) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_ad' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error  t value Pr(>|t|)    
+z_cond_chase            1.534850  15.358814 0.099933 0.920455    
+z_cond_chase:z_focal_ad 0.004457   0.002326 1.916162 0.056154 .  
+... 1 variable was removed because of collinearity (z_focal_ad)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.03621     Adj. R2: 0.035214
+                Within R2: 0.004725
+
+==============================
+ [4] SwStr rate (prior) x Attack direction (focal) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_ad' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                         Estimate Std. Error   t value Pr(>|t|) 
+z_cond_swstr             1.204871  12.034392  0.100119  0.92031 
+z_cond_swstr:z_focal_ad -0.000907   0.001833 -0.494483  0.62127 
+... 1 variable was removed because of collinearity (z_focal_ad)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036291     Adj. R2: 0.030875
+                 Within R2: 2.484e-4
+
+==============================
+ [5] Groundball rate (prior) x Attack angle (focal) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_aa' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                      Estimate Std. Error   t value Pr(>|t|)    
+z_cond_gb            -4.239612  53.728990 -0.078907 0.937151    
+z_cond_gb:z_focal_aa -0.004297   0.002286 -1.879872 0.060951 .  
+... 1 variable was removed because of collinearity (z_focal_aa)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036216     Adj. R2: 0.034885
+                 Within R2: 0.004385
+
+==============================
+ [6] Flyball rate (prior) x Swing tilt (focal) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_tilt' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|) 
+z_cond_fb               1.031149  10.217813  0.100917  0.91967 
+z_cond_fb:z_focal_tilt -0.002898   0.002324 -1.246572  0.21338 
+... 1 variable was removed because of collinearity (z_focal_tilt)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036257     Adj. R2: 0.032732
+                 Within R2: 0.002164
+
+==============================
+ [7] Take rate (prior) x Attack angle (focal) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_aa' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|) 
+z_cond_take            -0.949742   9.496329 -0.100011  0.92039 
+z_cond_take:z_focal_aa  0.000939   0.002376  0.394947  0.69312 
+... 1 variable was removed because of collinearity (z_focal_aa)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036292     Adj. R2: 0.030866
+                 Within R2: 2.4e-4  
+
+==============================
+ [8] Combined model: ss*aa + ld*tilt + chase*ad + swstr*ad 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variables 'z_focal_aa', 'z_focal_tilt', 'z_focal_ad' and 'z_cond_swstr' have
+been removed because of collinearity (see $collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                         Estimate  Std. Error     t value Pr(>|t|)    
+z_cond_ss                0.848817 1808.957933  0.00046923 0.999626    
+z_cond_ld                0.023670 1890.763972  0.00001252 0.999990    
+z_cond_chase             0.002079 2050.376705  0.00000101 0.999999    
+z_cond_ss:z_focal_aa     0.003761    0.002502  1.50318312 0.133688    
+z_cond_ld:z_focal_tilt   0.004165    0.002469  1.68696440 0.092496 .  
+z_cond_chase:z_focal_ad  0.006198    0.002520  2.46012936 0.014369 *  
+z_focal_ad:z_cond_swstr -0.002977    0.001944 -1.53184993 0.126458    
+... 4 variables were removed because of collinearity (z_focal_aa,
+z_focal_tilt and 2 others [full set in $collin.var])
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036021     Adj. R2: 0.038219
+                 Within R2: 0.01512 
+
+==============================
+ [9] Combined model, num_pas > 50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+The variables 'z_focal_aa', 'z_focal_tilt', 'z_cond_chase' and 'z_focal_ad' have
+been removed because of collinearity (see $collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                         Estimate   Std. Error     t value Pr(>|t|) 
+z_cond_ss                0.055452 32963.568072  0.00000168  1.00000 
+z_cond_ld               -0.006579  5328.169013 -0.00000123  1.00000 
+z_cond_swstr             0.004822   720.022755  0.00000670  0.99999 
+z_cond_ss:z_focal_aa     0.006941     0.005958  1.16494917  0.24545 
+z_cond_ld:z_focal_tilt   0.006999     0.004681  1.49527001  0.13644 
+z_cond_chase:z_focal_ad  0.004049     0.004020  1.00720060  0.31507 
+z_focal_ad:z_cond_swstr -0.001957     0.003149 -0.62130915  0.53511 
+... 4 variables were removed because of collinearity (z_focal_aa,
+z_focal_tilt and 2 others [full set in $collin.var])
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026735     Adj. R2: -0.212283
+                 Within R2:  0.02742 
+
+==============================
+ [10] SwStr% (focal) x Swing path tilt (conditional) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_swstr' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                           Estimate Std. Error   t value Pr(>|t|) 
+z_cond_tilt               -0.846545   8.421741 -0.100519  0.91999 
+z_focal_swstr:z_cond_tilt  0.000459   0.002105  0.218182  0.82741 
+... 1 variable was removed because of collinearity (z_focal_swstr)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036295     Adj. R2: 0.030686
+                 Within R2: 5.384e-5
+
+==============================
+ [11] Swing% (focal) x Nitro zone distance 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_swing' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                            Estimate Std. Error   t value Pr(>|t|) 
+z_nitro_dist               -0.003685   0.003733 -0.987165  0.32425 
+z_focal_swing:z_nitro_dist  0.001249   0.003191  0.391362  0.69577 
+... 1 variable was removed because of collinearity (z_focal_swing)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036517     Adj. R2: 0.015452
+                 Within R2: 0.001605
+
+==============================
+ [12] Chase% (focal) x Attack angle (conditional) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_chase' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error  t value Pr(>|t|) 
+z_cond_aa               1.059539   10.51702 0.100745  0.91981 
+z_focal_chase:z_cond_aa 0.001003    0.00240 0.417870  0.67630 
+... 1 variable was removed because of collinearity (z_focal_chase)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036291     Adj. R2: 0.030917
+                 Within R2: 2.921e-4
+
+==============================
+ [13] Swing path tilt (focal) x Attack angle (conditional) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_tilt' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|) 
+z_cond_aa               1.111495  10.744927  0.103444  0.91767 
+z_focal_tilt:z_cond_aa -0.003340   0.002159 -1.546745  0.12282 
+... 1 variable was removed because of collinearity (z_focal_tilt)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036233     Adj. R2: 0.034011
+                 Within R2: 0.003484
+
+==============================
+ [14] Chase% (focal) x Nitro zone distance 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_chase' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                            Estimate Std. Error   t value Pr(>|t|) 
+z_nitro_dist               -0.003857   0.003725 -1.035443  0.30119 
+z_focal_chase:z_nitro_dist  0.002410   0.003079  0.782500  0.43446 
+... 1 variable was removed because of collinearity (z_focal_chase)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036504     Adj. R2: 0.01611 
+                 Within R2: 0.002272
+
+==============================
+ [10r] SwStr% (focal) x Swing path tilt (conditional), num_pas > 50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+The variable 'z_focal_swstr' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                          Estimate Std. Error  t value Pr(>|t|) 
+z_cond_tilt               0.001592  11.751766 0.000135  0.99989 
+z_focal_swstr:z_cond_tilt 0.004184   0.005141 0.813835  0.41672 
+... 1 variable was removed because of collinearity (z_focal_swstr)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027055     Adj. R2: -0.204274
+                 Within R2:  0.004026
+
+==============================
+ [11r] Swing% (focal) x Nitro zone distance, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_swing' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                            Estimate Std. Error   t value Pr(>|t|) 
+z_nitro_dist                0.006313   0.007371  0.856516  0.39276 
+z_focal_swing:z_nitro_dist -0.000480   0.006566 -0.073097  0.94180 
+... 1 variable was removed because of collinearity (z_focal_swing)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.0272     Adj. R2: -0.206895
+               Within R2:  0.003801
+
+==============================
+ [12r] Chase% (focal) x Attack angle (conditional), num_pas > 50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+The variable 'z_focal_chase' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                         Estimate Std. Error   t value Pr(>|t|) 
+z_cond_aa                0.001565  24.125726  0.000065  0.99995 
+z_focal_chase:z_cond_aa -0.000940   0.004127 -0.227757  0.82007 
+... 1 variable was removed because of collinearity (z_focal_chase)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027105     Adj. R2: -0.208719
+                 Within R2:  3.496e-4
+
+==============================
+ [13r] Swing path tilt (focal) x Attack angle (conditional), num_pas > 50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+The variable 'z_focal_tilt' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|)    
+z_cond_aa               0.000867  25.469497  0.000034 0.999973    
+z_focal_tilt:z_cond_aa -0.005933   0.002765 -2.145815 0.033111 *  
+... 1 variable was removed because of collinearity (z_focal_tilt)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026892     Adj. R2: -0.189852
+                 Within R2:  0.015953
+
+==============================
+ [14r] Chase% (focal) x Nitro zone distance, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_chase' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                           Estimate Std. Error  t value Pr(>|t|) 
+z_nitro_dist               0.006217   0.007288 0.852996  0.39470 
+z_focal_chase:z_nitro_dist 0.000417   0.006137 0.067976  0.94587 
+... 1 variable was removed because of collinearity (z_focal_chase)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027201     Adj. R2: -0.206906
+                 Within R2:  0.003792
+
+==============================
+ [15] focal_delta_run_exp_pa ~ nitro_dist (full sample, unweighted, no FE) 
+==============================
+
+Call:
+lm(formula = focal_delta_run_exp_pa ~ nitro_dist, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.17917 -0.04001 -0.00095  0.03571  0.23991 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.020771   0.003092   6.718 2.60e-11 ***
+nitro_dist  -0.040040   0.009602  -4.170 3.22e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.06098 on 1511 degrees of freedom
+  (32 observations deleted due to missingness)
+Multiple R-squared:  0.01138,	Adjusted R-squared:  0.01072 
+F-statistic: 17.39 on 1 and 1511 DF,  p-value: 3.222e-05
+
+
+==============================
+ [15r] focal_delta_run_exp_pa ~ nitro_dist, num_pas > 50 (unweighted, no FE) 
+==============================
+
+Call:
+lm(formula = focal_delta_run_exp_pa ~ nitro_dist, data = df_hi2)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.159158 -0.036571 -0.001952  0.031014  0.190756 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.023284   0.003758   6.196 9.22e-10 ***
+nitro_dist  -0.027180   0.012491  -2.176   0.0299 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.0523 on 811 degrees of freedom
+  (8 observations deleted due to missingness)
+Multiple R-squared:  0.005804,	Adjusted R-squared:  0.004578 
+F-statistic: 4.735 on 1 and 811 DF,  p-value: 0.02985
+
+
+==============================
+ [16] Conditional nitro_x x Focal nitro_x 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_nitro_x' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                                Estimate Std. Error   t value Pr(>|t|) 
+z_cond_nitro_x                 -0.420855   8.087723 -0.052036  0.95853 
+z_cond_nitro_x:z_focal_nitro_x  0.002449   0.002081  1.176619  0.24016 
+... 1 variable was removed because of collinearity (z_focal_nitro_x)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.03652     Adj. R2: 0.01529 
+                Within R2: 0.001441
+
+==============================
+ [17] Conditional nitro_z x Focal nitro_z 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_nitro_z' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error  t value Pr(>|t|) 
+z_cond_nitro_z                 0.396554   7.769923 0.051037  0.95933 
+z_cond_nitro_z:z_focal_nitro_z 0.001724   0.002789 0.618068  0.53694 
+... 1 variable was removed because of collinearity (z_focal_nitro_z)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036536     Adj. R2: 0.014412
+                 Within R2: 5.507e-4
+
+==============================
+ [16r] Conditional nitro_x x Focal nitro_x, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_nitro_x' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                                Estimate Std. Error   t value Pr(>|t|) 
+z_cond_nitro_x                 -0.013200  123.62632 -0.000107  0.99991 
+z_cond_nitro_x:z_focal_nitro_x  0.004445    0.00484  0.918413  0.35953 
+... 1 variable was removed because of collinearity (z_focal_nitro_x)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027208     Adj. R2: -0.207535
+                 Within R2:  0.003273
+
+==============================
+ [17r] Conditional nitro_z x Focal nitro_z, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_nitro_z' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                                Estimate Std. Error   t value Pr(>|t|) 
+z_cond_nitro_z                  0.000500  24.817855  0.000020  0.99998 
+z_cond_nitro_z:z_focal_nitro_z -0.007593   0.005782 -1.313152  0.19067 
+... 1 variable was removed because of collinearity (z_focal_nitro_z)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027126     Adj. R2: -0.200263
+                 Within R2:  0.009276
+
+==============================
+ [18] Conditional nitro_x x Focal nitro_z 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_nitro_z' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                                Estimate Std. Error   t value Pr(>|t|) 
+z_cond_nitro_x                 -0.419107   8.199212 -0.051115  0.95926 
+z_cond_nitro_x:z_focal_nitro_z  0.001362   0.002467  0.552043  0.58128 
+... 1 variable was removed because of collinearity (z_focal_nitro_z)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036539     Adj. R2: 0.014225
+                 Within R2: 3.609e-4
+
+==============================
+ [19] Conditional nitro_z x Focal nitro_x 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_nitro_x' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error  t value Pr(>|t|) 
+z_cond_nitro_z                 0.400395   7.749225 0.051669  0.95882 
+z_cond_nitro_z:z_focal_nitro_x 0.000176   0.002088 0.084391  0.93279 
+... 1 variable was removed because of collinearity (z_focal_nitro_x)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036546     Adj. R2: 0.013876
+                 Within R2: 7.717e-6
+
+==============================
+ [18r] Conditional nitro_x x Focal nitro_z, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_nitro_z' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                                Estimate Std. Error   t value Pr(>|t|) 
+z_cond_nitro_x                 -0.018166 157.676610 -0.000115  0.99991 
+z_cond_nitro_x:z_focal_nitro_z  0.005742   0.005113  1.122966  0.26283 
+... 1 variable was removed because of collinearity (z_focal_nitro_z)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027163     Adj. R2: -0.203539
+                 Within R2:  0.006571
+
+==============================
+ [19r] Conditional nitro_z x Focal nitro_x, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_nitro_x' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error  t value Pr(>|t|) 
+z_cond_nitro_z                 0.003032  14.785480 0.000205  0.99984 
+z_cond_nitro_z:z_focal_nitro_x 0.008344   0.005075 1.644226  0.10173 
+... 1 variable was removed because of collinearity (z_focal_nitro_x)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027071     Adj. R2: -0.195409
+                 Within R2:  0.013282
+
+==============================
+ [20] Conditional OBP x Nitro zone distance 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                         Estimate Std. Error   t value Pr(>|t|)    
+z_cond_obp              -0.019779   0.010553 -1.874298 0.061734 .  
+z_nitro_dist            -0.003723   0.003714 -1.002621 0.316747    
+z_cond_obp:z_nitro_dist -0.000876   0.002770 -0.316433 0.751865    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.03641     Adj. R2: 0.019704
+                Within R2: 0.007403
+
+==============================
+ [20r] Conditional OBP x Nitro zone distance, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                         Estimate Std. Error   t value Pr(>|t|) 
+z_cond_obp              -0.014560   0.016340 -0.891019  0.37401 
+z_nitro_dist             0.005478   0.007295  0.750825  0.45366 
+z_cond_obp:z_nitro_dist  0.002516   0.005208  0.483120  0.62955 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027101     Adj. R2: -0.205324
+                 Within R2:  0.011091
+
+==============================
+ [21] Focal SLG x Nitro zone distance 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                          Estimate Std. Error  t value   Pr(>|t|)    
+z_focal_slg               0.036764   0.005953  6.17563 1.8534e-09 ***
+z_nitro_dist             -0.004290   0.003744 -1.14571 2.5271e-01    
+z_focal_slg:z_nitro_dist -0.005662   0.003464 -1.63436 1.0310e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036066     Adj. R2: 0.038136
+                 Within R2: 0.026067
+
+==============================
+ [22] Conditional SLG x Focal SweetSpot% 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_ss' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                       Estimate Std. Error   t value Pr(>|t|) 
+z_cond_slg            -0.002403   0.015975 -0.150404  0.88053 
+z_cond_slg:z_focal_ss -0.002675   0.002640 -1.013490  0.31152 
+... 1 variable was removed because of collinearity (z_focal_ss)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036272     Adj. R2: 0.031937
+                 Within R2: 0.001344
+
+==============================
+ [23] Focal GroundBall% x Conditional Attack angle 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_gb' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                     Estimate Std. Error   t value Pr(>|t|) 
+z_cond_aa             1.09812  10.376702  0.105826  0.91578 
+z_focal_gb:z_cond_aa -0.00298   0.002336 -1.275309  0.20304 
+... 1 variable was removed because of collinearity (z_focal_gb)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036259     Adj. R2: 0.03258 
+                 Within R2: 0.002008
+
+==============================
+ [24] Focal FlyBall% x Conditional Swing path tilt 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_fb' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|) 
+z_cond_tilt            -0.852047   8.520709 -0.099997  0.92040 
+z_focal_fb:z_cond_tilt  0.003640   0.002405  1.513481  0.13105 
+... 1 variable was removed because of collinearity (z_focal_fb)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036237     Adj. R2: 0.033785
+                 Within R2: 0.003251
+
+==============================
+ [21r] Focal SLG x Nitro zone distance, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                          Estimate Std. Error   t value   Pr(>|t|)    
+z_focal_slg               0.033519   0.007218  4.643773 6.2598e-06 ***
+z_nitro_dist              0.006757   0.007408  0.912206 3.6278e-01    
+z_focal_slg:z_nitro_dist -0.004575   0.007415 -0.616962 5.3798e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026814     Adj. R2: -0.179912
+                 Within R2:  0.03194 
+
+==============================
+ [22r] Conditional SLG x Focal SweetSpot%, num_pas > 50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+The variable 'z_focal_ss' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                       Estimate Std. Error   t value Pr(>|t|) 
+z_cond_slg            -0.001686   0.021017 -0.080234  0.93613 
+z_cond_slg:z_focal_ss -0.004752   0.004944 -0.961017  0.33772 
+... 1 variable was removed because of collinearity (z_focal_ss)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027044     Adj. R2: -0.203318
+                 Within R2:  0.004816
+
+==============================
+ [23r] Focal GroundBall% x Conditional Attack angle, num_pas > 50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+The variable 'z_focal_gb' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                     Estimate Std. Error  t value Pr(>|t|) 
+z_cond_aa            0.001861   24.53914 0.000076  0.99994 
+z_focal_gb:z_cond_aa 0.001855    0.00383 0.484361  0.62867 
+... 1 variable was removed because of collinearity (z_focal_gb)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027099     Adj. R2: -0.208195
+                 Within R2:  7.827e-4
+
+==============================
+ [24r] Focal FlyBall% x Conditional Swing path tilt, num_pas > 50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+The variable 'z_focal_fb' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                       Estimate Std. Error  t value Pr(>|t|) 
+z_cond_tilt            0.001057  10.051581 0.000105  0.99992 
+z_focal_fb:z_cond_tilt 0.008236   0.005458 1.509024  0.13289 
+... 1 variable was removed because of collinearity (z_focal_fb)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026904     Adj. R2: -0.190891
+                 Within R2:  0.015094
+
+==============================
+ [25] Conditional Contact% x Nitro zone distance 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                             Estimate Std. Error   t value Pr(>|t|) 
+z_cond_contact               0.405151   7.757494  0.052227  0.95838 
+z_nitro_dist                -0.003938   0.003697 -1.065280  0.28749 
+z_cond_contact:z_nitro_dist  0.002568   0.002929  0.876780  0.38122 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036503     Adj. R2: 0.014714
+                 Within R2: 0.00235 
+
+==============================
+ [25r] Conditional Contact% x Nitro zone distance, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                             Estimate Std. Error   t value Pr(>|t|)    
+z_cond_contact              -0.006113  36.114811 -0.000169 0.999865    
+z_nitro_dist                 0.004200   0.007257  0.578786 0.563398    
+z_cond_contact:z_nitro_dist  0.009527   0.005045  1.888515 0.060434 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027058     Adj. R2: -0.201537
+                 Within R2:  0.014198
+
+==============================
+ [26] |Contact% gap| x Nitro zone distance 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                                Estimate Std. Error   t value Pr(>|t|) 
+z_abs_contact_gap              -0.001152   0.003083 -0.373603  0.70893 
+z_nitro_dist                   -0.003720   0.003749 -0.992320  0.32174 
+z_abs_contact_gap:z_nitro_dist -0.000055   0.002371 -0.023336  0.98140 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036517     Adj. R2: 0.013941
+                 Within R2: 0.001568
+
+==============================
+ [26r] |Contact% gap| x Nitro zone distance, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                                Estimate Std. Error   t value Pr(>|t|) 
+z_abs_contact_gap               0.003909   0.005379  0.726746  0.46825 
+z_nitro_dist                    0.006800   0.007583  0.896782  0.37094 
+z_abs_contact_gap:z_nitro_dist -0.005369   0.005505 -0.975365  0.33058 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.02711     Adj. R2: -0.206123
+                Within R2:  0.010436
+
+==============================
+ [27] Conditional SwStr% x Nitro zone distance 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                           Estimate Std. Error   t value Pr(>|t|) 
+z_cond_swstr              -0.416627   7.813488 -0.053321  0.95751 
+z_nitro_dist              -0.004053   0.003699 -1.095614  0.27401 
+z_cond_swstr:z_nitro_dist -0.002315   0.002649 -0.873839  0.38281 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036506     Adj. R2: 0.01456 
+                 Within R2: 0.002195
+
+==============================
+ [27r] Conditional SwStr% x Nitro zone distance, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                           Estimate Std. Error   t value Pr(>|t|) 
+z_cond_swstr              -0.004605  44.668767 -0.000103  0.99992 
+z_nitro_dist               0.004311   0.007341  0.587332  0.55766 
+z_cond_swstr:z_nitro_dist -0.007509   0.005215 -1.439959  0.15147 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027107     Adj. R2: -0.205886
+                 Within R2:  0.01063 
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_ss' has been removed because of collinearity (see
+$collin.var).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_ss' has been removed because of collinearity (see
+$collin.var).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_aa' has been removed because of collinearity (see
+$collin.var).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_aa' has been removed because of collinearity (see
+$collin.var).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_ad' has been removed because of collinearity (see
+$collin.var).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_ad' has been removed because of collinearity (see
+$collin.var).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_tilt' has been removed because of collinearity (see
+$collin.var).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_tilt' has been removed because of collinearity (see
+$collin.var).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_gb' has been removed because of collinearity (see
+$collin.var).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_gb' has been removed because of collinearity (see
+$collin.var).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_fb' has been removed because of collinearity (see
+$collin.var).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_fb' has been removed because of collinearity (see
+$collin.var).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_ld' has been removed because of collinearity (see
+$collin.var).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_ld' has been removed because of collinearity (see
+$collin.var).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_pu' has been removed because of collinearity (see
+$collin.var).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_pu' has been removed because of collinearity (see
+$collin.var).
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+The variable 'z_focal_swstr' has been removed because of collinearity (see
+$collin.var).
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+The variable 'z_focal_swstr' has been removed because of collinearity (see
+$collin.var).
+
+==============================
+ Sweep: remaining traits x nitro_dist 
+==============================
+      variable full_estimate  full_p hi_estimate     hi_p full_sig hi_sig
+     z_cond_ss    -4.357e-05 0.99041  -0.0033415 0.687782    FALSE  FALSE
+     z_cond_aa     2.272e-03 0.40594   0.0075533 0.165935    FALSE  FALSE
+     z_cond_ad    -5.683e-03 0.07040  -0.0122765 0.039831    FALSE   TRUE
+   z_cond_tilt    -1.475e-03 0.65556   0.0002226 0.979090    FALSE  FALSE
+     z_cond_gb    -3.093e-03 0.29426  -0.0059258 0.328951    FALSE  FALSE
+     z_cond_fb     2.287e-03 0.37890   0.0055857 0.231187    FALSE  FALSE
+     z_cond_ld    -2.017e-03 0.57217  -0.0080933 0.226028    FALSE  FALSE
+     z_cond_pu     4.405e-03 0.23350   0.0118923 0.061350    FALSE  FALSE
+  z_cond_chase    -8.964e-04 0.73689   0.0052110 0.307619    FALSE  FALSE
+   z_cond_take     3.100e-04 0.91103   0.0012539 0.809670    FALSE  FALSE
+    z_cond_slg     1.602e-03 0.66800   0.0069330 0.320211    FALSE  FALSE
+    z_focal_ss    -1.849e-03 0.56159  -0.0084443 0.249035    FALSE  FALSE
+    z_focal_aa    -5.191e-03 0.07168  -0.0068141 0.312083    FALSE  FALSE
+    z_focal_ad     5.973e-03 0.03739   0.0142888 0.006098     TRUE   TRUE
+  z_focal_tilt    -2.441e-03 0.40070  -0.0003654 0.951928    FALSE  FALSE
+    z_focal_gb     4.462e-03 0.16605   0.0080625 0.274181    FALSE  FALSE
+    z_focal_fb    -3.977e-03 0.19695  -0.0042353 0.584094    FALSE  FALSE
+    z_focal_ld    -9.673e-04 0.75262  -0.0050205 0.469616    FALSE  FALSE
+    z_focal_pu    -2.177e-03 0.47525  -0.0080965 0.224914    FALSE  FALSE
+ z_focal_swstr    -2.106e-03 0.46659  -0.0042709 0.523431    FALSE  FALSE
+
+==============================
+ [28] Conditional Attack Direction x Nitro zone distance 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|)    
+z_cond_ad              -0.478348   9.293739 -0.051470 0.958981    
+z_nitro_dist           -0.003927   0.003631 -1.081292 0.280323    
+z_cond_ad:z_nitro_dist -0.005683   0.003131 -1.814926 0.070404 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036424     Adj. R2: 0.018946
+                 Within R2: 0.006636
+
+==============================
+ [28r] Conditional Attack Direction x Nitro zone distance, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|)    
+z_cond_ad              -0.005133  24.306782 -0.000211 0.999832    
+z_nitro_dist            0.002552   0.006737  0.378863 0.705200    
+z_cond_ad:z_nitro_dist -0.012276   0.005933 -2.069283 0.039831 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026882     Adj. R2: -0.185942
+                 Within R2:  0.026993
+
+==============================
+ [29] Conditional GroundBall% x Nitro zone distance 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|) 
+z_cond_gb               0.449048   8.101288  0.055429  0.95583 
+z_nitro_dist           -0.003806   0.003719 -1.023461  0.30681 
+z_cond_gb:z_nitro_dist -0.003093   0.002944 -1.050411  0.29426 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036495     Adj. R2: 0.015139
+                 Within R2: 0.002781
+
+==============================
+ [29r] Conditional GroundBall% x Nitro zone distance, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|) 
+z_cond_gb               0.000920  10.325301  0.000089  0.99993 
+z_nitro_dist            0.005511   0.007535  0.731431  0.46539 
+z_cond_gb:z_nitro_dist -0.005926   0.006055 -0.978666  0.32895 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027136     Adj. R2: -0.20845 
+                 Within R2:  0.008527
+
+==============================
+ [30] Conditional PopUp% x Nitro zone distance 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|) 
+z_cond_pu              -0.560332   9.612341 -0.058293  0.95355 
+z_nitro_dist           -0.003404   0.003705 -0.919000  0.35874 
+z_cond_pu:z_nitro_dist  0.004405   0.003691  1.193480  0.23350 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036471     Adj. R2: 0.016454
+                 Within R2: 0.004112
+
+==============================
+ [30r] Conditional PopUp% x Nitro zone distance, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                       Estimate Std. Error  t value Pr(>|t|)    
+z_cond_pu              0.000307  10.432347 0.000029  0.99998    
+z_nitro_dist           0.005917   0.007116 0.831535  0.40668    
+z_cond_pu:z_nitro_dist 0.011892   0.006320 1.881764  0.06135 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026997     Adj. R2: -0.196122
+                 Within R2:  0.018641
+
+==============================
+ [31] Conditional Take% x Nitro zone distance 
+==============================
+NOTES: 32 observations removed because of NA values (RHS: 32).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,364
+Weights: num_pas
+Fixed-effects: focal_batter_id: 346,  conditional_batter_id: 348
+Standard-errors: Clustered (focal_batter_id) 
+                          Estimate Std. Error   t value Pr(>|t|) 
+z_cond_take              -0.566571  11.036236 -0.051337  0.95909 
+z_nitro_dist             -0.003800   0.003725 -1.020172  0.30836 
+z_cond_take:z_nitro_dist  0.000310   0.002772  0.111825  0.91103 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036521     Adj. R2: 0.013766
+                 Within R2: 0.00139 
+
+==============================
+ [31r] Conditional Take% x Nitro zone distance, num_pas > 50 
+==============================
+NOTES: 8 observations removed because of NA values (RHS: 8).
+       136/126 fixed-effect singletons were removed (251 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 562
+Weights: num_pas
+Fixed-effects: focal_batter_id: 197,  conditional_batter_id: 198
+Standard-errors: Clustered (focal_batter_id) 
+                          Estimate Std. Error   t value Pr(>|t|) 
+z_cond_take              -0.012327  90.932016 -0.000136  0.99989 
+z_nitro_dist              0.006029   0.007517  0.802084  0.42348 
+z_cond_take:z_nitro_dist  0.001254   0.005199  0.241177  0.80967 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.027198     Adj. R2: -0.213966
+                 Within R2:  0.004001
+
+==============================
+ [28-40] Conditional Attack Direction x Nitro zone distance, num_pas > 40 
+==============================
+NOTES: 11 observations removed because of NA values (RHS: 11).
+       106/109 fixed-effect singletons were removed (206 observations).
+The variable 'z_cond_ad' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 874
+Weights: num_pas
+Fixed-effects: focal_batter_id: 270,  conditional_batter_id: 264
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|)    
+z_nitro_dist            0.002841   0.004642  0.612107 0.540984    
+z_cond_ad:z_nitro_dist -0.007671   0.003965 -1.934609 0.054087 .  
+... 1 variable was removed because of collinearity (z_cond_ad)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.031     Adj. R2: -0.039982
+              Within R2:  0.010693
+
+==============================
+ [28-75] Conditional Attack Direction x Nitro zone distance, num_pas > 75 
+==============================
+NOTES: 6 observations removed because of NA values (RHS: 6).
+       171/176 fixed-effect singletons were removed (296 observations).
+The variable 'z_cond_ad' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 167
+Weights: num_pas
+Fixed-effects: focal_batter_id: 72,  conditional_batter_id: 71
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error  t value Pr(>|t|)    
+z_nitro_dist           -0.013985   0.012902 -1.08387 0.282087    
+z_cond_ad:z_nitro_dist -0.017390   0.007974 -2.18075 0.032517 *  
+... 1 variable was removed because of collinearity (z_cond_ad)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.022998     Adj. R2: -1.20572
+                 Within R2: 0.05016 
+
+==============================
+ [21-40] Focal SLG x Nitro zone distance, num_pas > 40 
+==============================
+NOTES: 11 observations removed because of NA values (RHS: 11).
+       106/109 fixed-effect singletons were removed (206 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 874
+Weights: num_pas
+Fixed-effects: focal_batter_id: 270,  conditional_batter_id: 264
+Standard-errors: Clustered (focal_batter_id) 
+                          Estimate Std. Error   t value   Pr(>|t|)    
+z_focal_slg               0.041820   0.006313  6.624337 1.8919e-10 ***
+z_nitro_dist              0.003912   0.004926  0.794090 4.2784e-01    
+z_focal_slg:z_nitro_dist -0.003560   0.004823 -0.738127 4.6108e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.03055     Adj. R2: -0.013014
+                Within R2:  0.03919 
+
+==============================
+ [21-75] Focal SLG x Nitro zone distance, num_pas > 75 
+==============================
+NOTES: 6 observations removed because of NA values (RHS: 6).
+       171/176 fixed-effect singletons were removed (296 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 167
+Weights: num_pas
+Fixed-effects: focal_batter_id: 72,  conditional_batter_id: 71
+Standard-errors: Clustered (focal_batter_id) 
+                          Estimate Std. Error   t value Pr(>|t|)    
+z_focal_slg               0.045153   0.023731  1.902684 0.061137 .  
+z_nitro_dist             -0.001917   0.012093 -0.158562 0.874464    
+z_focal_slg:z_nitro_dist -0.021848   0.011414 -1.914222 0.059622 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.021111     Adj. R2: -0.943134
+                 Within R2:  0.199617
+
+==============================
+ [13-40] Focal swing tilt x Conditional attack angle, num_pas > 40 
+==============================
+NOTE: 106/112 fixed-effect singletons were removed (209 observations).
+The variable 'z_cond_aa' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 882
+Weights: num_pas
+Fixed-effects: focal_batter_id: 273,  conditional_batter_id: 267
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|) 
+z_focal_tilt            1.363590 135.902460  0.010034  0.99200 
+z_focal_tilt:z_cond_aa -0.003377   0.002513 -1.343700  0.18017 
+... 1 variable was removed because of collinearity (z_cond_aa)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.030896     Adj. R2: -0.036671
+                 Within R2:  0.004079
+
+==============================
+ [13-75] Focal swing tilt x Conditional attack angle, num_pas > 75 
+==============================
+NOTE: 174/179 fixed-effect singletons were removed (302 observations).
+The variable 'z_cond_aa' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 167
+Weights: num_pas
+Fixed-effects: focal_batter_id: 72,  conditional_batter_id: 71
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate  Std. Error   t value Pr(>|t|) 
+z_focal_tilt           -0.183201 2857.191291 -0.000064  0.99995 
+z_focal_tilt:z_cond_aa -0.000419    0.004377 -0.095827  0.92393 
+... 1 variable was removed because of collinearity (z_cond_aa)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.023596     Adj. R2: -1.32203
+                 Within R2: 7.222e-5
+
+==============================
+ [27-40] Conditional SwStr% x Nitro zone distance, num_pas > 40 
+==============================
+NOTES: 11 observations removed because of NA values (RHS: 11).
+       106/109 fixed-effect singletons were removed (206 observations).
+The variable 'z_cond_swstr' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 874
+Weights: num_pas
+Fixed-effects: focal_batter_id: 270,  conditional_batter_id: 264
+Standard-errors: Clustered (focal_batter_id) 
+                           Estimate Std. Error   t value Pr(>|t|) 
+z_nitro_dist               0.003264   0.004818  0.677520  0.49866 
+z_cond_swstr:z_nitro_dist -0.004408   0.003589 -1.228169  0.22046 
+... 1 variable was removed because of collinearity (z_cond_swstr)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.031101     Adj. R2: -0.046755
+                 Within R2:  0.00425 
+
+==============================
+ [27-75] Conditional SwStr% x Nitro zone distance, num_pas > 75 
+==============================
+NOTES: 6 observations removed because of NA values (RHS: 6).
+       171/176 fixed-effect singletons were removed (296 observations).
+The variable 'z_cond_swstr' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 167
+Weights: num_pas
+Fixed-effects: focal_batter_id: 72,  conditional_batter_id: 71
+Standard-errors: Clustered (focal_batter_id) 
+                           Estimate Std. Error   t value Pr(>|t|) 
+z_nitro_dist              -0.002734   0.011709 -0.233505  0.81604 
+z_cond_swstr:z_nitro_dist  0.006212   0.012362  0.502512  0.61686 
+... 1 variable was removed because of collinearity (z_cond_swstr)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.02354     Adj. R2: -1.31095
+                Within R2: 0.004844
+
+==============================
+ [29-40] Conditional GroundBall% x Nitro zone distance, num_pas > 40 
+==============================
+NOTES: 11 observations removed because of NA values (RHS: 11).
+       106/109 fixed-effect singletons were removed (206 observations).
+The variable 'z_cond_gb' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 874
+Weights: num_pas
+Fixed-effects: focal_batter_id: 270,  conditional_batter_id: 264
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|) 
+z_nitro_dist            0.003570   0.004957  0.720198  0.47203 
+z_cond_gb:z_nitro_dist -0.002648   0.004277 -0.619071  0.53639 
+... 1 variable was removed because of collinearity (z_cond_gb)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.03113     Adj. R2: -0.048685
+                Within R2:  0.002414
+
+==============================
+ [29-75] Conditional GroundBall% x Nitro zone distance, num_pas > 75 
+==============================
+NOTES: 6 observations removed because of NA values (RHS: 6).
+       171/176 fixed-effect singletons were removed (296 observations).
+The variable 'z_cond_gb' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 167
+Weights: num_pas
+Fixed-effects: focal_batter_id: 72,  conditional_batter_id: 71
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error  t value Pr(>|t|) 
+z_nitro_dist           -0.017456   0.014546 -1.20010  0.23409 
+z_cond_gb:z_nitro_dist -0.020811   0.013213 -1.57506  0.11969 
+... 1 variable was removed because of collinearity (z_cond_gb)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.022989     Adj. R2: -1.20399
+                 Within R2: 0.050902
+
+==============================
+ [30-40] Conditional PopUp% x Nitro zone distance, num_pas > 40 
+==============================
+NOTES: 11 observations removed because of NA values (RHS: 11).
+       106/109 fixed-effect singletons were removed (206 observations).
+The variable 'z_cond_pu' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 874
+Weights: num_pas
+Fixed-effects: focal_batter_id: 270,  conditional_batter_id: 264
+Standard-errors: Clustered (focal_batter_id) 
+                       Estimate Std. Error  t value Pr(>|t|) 
+z_nitro_dist           0.003917   0.004869 0.804405  0.42187 
+z_cond_pu:z_nitro_dist 0.004026   0.004472 0.900237  0.36880 
+... 1 variable was removed because of collinearity (z_cond_pu)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.031114     Adj. R2: -0.047617
+                 Within R2:  0.00343 
+
+==============================
+ [30-75] Conditional PopUp% x Nitro zone distance, num_pas > 75 
+==============================
+NOTES: 6 observations removed because of NA values (RHS: 6).
+       171/176 fixed-effect singletons were removed (296 observations).
+The variable 'z_cond_pu' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 167
+Weights: num_pas
+Fixed-effects: focal_batter_id: 72,  conditional_batter_id: 71
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value Pr(>|t|) 
+z_nitro_dist           -0.005280   0.010954 -0.481973  0.63131 
+z_cond_pu:z_nitro_dist  0.007055   0.006605  1.068084  0.28910 
+... 1 variable was removed because of collinearity (z_cond_pu)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.023501     Adj. R2: -1.30332
+                 Within R2: 0.008128
+
+==============================
+ [31-40] Conditional Take% x Nitro zone distance, num_pas > 40 
+==============================
+NOTES: 11 observations removed because of NA values (RHS: 11).
+       106/109 fixed-effect singletons were removed (206 observations).
+The variable 'z_cond_take' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 874
+Weights: num_pas
+Fixed-effects: focal_batter_id: 270,  conditional_batter_id: 264
+Standard-errors: Clustered (focal_batter_id) 
+                         Estimate Std. Error  t value Pr(>|t|) 
+z_nitro_dist             0.003099   0.004949 0.626168  0.53174 
+z_cond_take:z_nitro_dist 0.004226   0.003861 1.094536  0.27470 
+... 1 variable was removed because of collinearity (z_cond_take)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.031104     Adj. R2: -0.046945
+                 Within R2:  0.004069
+
+==============================
+ [31-75] Conditional Take% x Nitro zone distance, num_pas > 75 
+==============================
+NOTES: 6 observations removed because of NA values (RHS: 6).
+       171/176 fixed-effect singletons were removed (296 observations).
+The variable 'z_cond_take' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 167
+Weights: num_pas
+Fixed-effects: focal_batter_id: 72,  conditional_batter_id: 71
+Standard-errors: Clustered (focal_batter_id) 
+                          Estimate Std. Error   t value Pr(>|t|) 
+z_nitro_dist             -0.008098   0.011235 -0.720771  0.47342 
+z_cond_take:z_nitro_dist  0.009556   0.010363  0.922158  0.35957 
+... 1 variable was removed because of collinearity (z_cond_take)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.023485     Adj. R2: -1.30022
+                 Within R2: 0.009465

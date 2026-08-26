@@ -1,0 +1,780 @@
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+Rows with within-conditional_id variation in conditional_season_obp:  96 
+Rows with within-focal_id variation in focal_season_slg:  121 
+
+==============================
+ [1] focal_delta_run_exp_pa ~ conditional_season_obp * focal_season_slg 
+==============================
+
+Call:
+lm(formula = focal_delta_run_exp_pa ~ conditional_season_obp * 
+    focal_season_slg, data = df)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.167352 -0.033415 -0.001328  0.033183  0.216251 
+
+Coefficients:
+                                         Estimate Std. Error t value Pr(>|t|)  
+(Intercept)                             -0.144937   0.075718  -1.914   0.0558 .
+conditional_season_obp                   0.001426   0.238917   0.006   0.9952  
+focal_season_slg                         0.395282   0.180957   2.184   0.0291 *
+conditional_season_obp:focal_season_slg -0.056927   0.567144  -0.100   0.9201  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.05577 on 1534 degrees of freedom
+  (7 observations deleted due to missingness)
+Multiple R-squared:  0.1743,	Adjusted R-squared:  0.1727 
+F-statistic: 107.9 on 3 and 1534 DF,  p-value: < 2.2e-16
+
+
+==============================
+ [2] focal_delta_run_diff ~ conditional_season_obp 
+==============================
+
+Call:
+lm(formula = focal_delta_run_diff ~ conditional_season_obp, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.17571 -0.03322 -0.00087  0.03254  0.20461 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(>|t|)
+(Intercept)             0.01027    0.01260   0.815    0.415
+conditional_season_obp -0.03551    0.03939  -0.901    0.368
+
+Residual standard error: 0.05474 on 1536 degrees of freedom
+  (7 observations deleted due to missingness)
+Multiple R-squared:  0.0005287,	Adjusted R-squared:  -0.000122 
+F-statistic: 0.8126 on 1 and 1536 DF,  p-value: 0.3675
+
+
+==============================
+ [3] focal_delta_run_diff ~ conditional_season_obp * focal_season_slg 
+==============================
+
+Call:
+lm(formula = focal_delta_run_diff ~ conditional_season_obp * 
+    focal_season_slg, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.17436 -0.03337 -0.00075  0.03282  0.20540 
+
+Coefficients:
+                                        Estimate Std. Error t value Pr(>|t|)
+(Intercept)                              0.02194    0.07436   0.295    0.768
+conditional_season_obp                  -0.06024    0.23464  -0.257    0.797
+focal_season_slg                        -0.03082    0.17772  -0.173    0.862
+conditional_season_obp:focal_season_slg  0.06741    0.55700   0.121    0.904
+
+Residual standard error: 0.05477 on 1534 degrees of freedom
+  (7 observations deleted due to missingness)
+Multiple R-squared:  0.0006728,	Adjusted R-squared:  -0.001282 
+F-statistic: 0.3443 on 3 and 1534 DF,  p-value: 0.7933
+
+
+==============================
+ [4] [3] with aweight=num_pas, cluster(focal_batter_id) 
+==============================
+NOTE: 7 observations removed because of NA values (LHS: 4, RHS: 7).
+OLS estimation, Dep. Var.: focal_delta_run_diff
+Observations: 1,538
+Weights: num_pas
+Standard-errors: Clustered (focal_batter_id) 
+                                         Estimate Std. Error   t value Pr(>|t|)
+(Intercept)                              0.006282   0.058346  0.107666  0.91431
+conditional_season_obp                  -0.017963   0.178053 -0.100888  0.91969
+focal_season_slg                         0.010025   0.136774  0.073295  0.94161
+conditional_season_obp:focal_season_slg -0.032944   0.413498 -0.079673  0.93654
+                                        
+(Intercept)                             
+conditional_season_obp                  
+focal_season_slg                        
+conditional_season_obp:focal_season_slg 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.045737   Adj. R2: -0.001332
+
+==============================
+ [5] reghdfe: focal_delta_run_exp_pa ~ obp*slg | focal+conditional FE, num_pas>50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                                         Estimate Std. Error   t value Pr(>|t|)
+conditional_season_obp                  -0.311378   1.146143 -0.271675  0.78616
+focal_season_slg                         0.589060   0.759708  0.775376  0.43905
+conditional_season_obp:focal_season_slg -0.270526   2.277428 -0.118786  0.90557
+                                        
+conditional_season_obp                  
+focal_season_slg                        
+conditional_season_obp:focal_season_slg 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026652     Adj. R2: -0.175755
+                 Within R2:  0.033434
+
+==============================
+ [6] focal_delta_run_diff ~ z_obp * z_slg 
+==============================
+
+Call:
+lm(formula = focal_delta_run_diff ~ z_obp * z_slg, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.17436 -0.03337 -0.00075  0.03282  0.20540 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) -0.0010453  0.0014172  -0.738    0.461
+z_obp       -0.0011583  0.0014251  -0.813    0.416
+z_slg       -0.0006426  0.0014245  -0.451    0.652
+z_obp:z_slg  0.0001634  0.0013497   0.121    0.904
+
+Residual standard error: 0.05477 on 1534 degrees of freedom
+  (7 observations deleted due to missingness)
+Multiple R-squared:  0.0006728,	Adjusted R-squared:  -0.001282 
+F-statistic: 0.3443 on 3 and 1534 DF,  p-value: 0.7933
+
+
+==============================
+ [7] focal_delta_run_diff ~ factor(q_obp) * factor(q_slg) 
+==============================
+
+Call:
+lm(formula = focal_delta_run_diff ~ factor(q_obp) * factor(q_slg), 
+    data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.17334 -0.03313 -0.00086  0.03173  0.20694 
+
+Coefficients:
+                                Estimate Std. Error t value Pr(>|t|)  
+(Intercept)                    0.0008748  0.0046264   0.189   0.8501  
+factor(q_obp)2                 0.0069599  0.0070479   0.988   0.3235  
+factor(q_obp)3                -0.0056335  0.0079026  -0.713   0.4760  
+factor(q_obp)4                -0.0154713  0.0081319  -1.903   0.0573 .
+factor(q_slg)2                -0.0075824  0.0071261  -1.064   0.2875  
+factor(q_slg)3                -0.0001156  0.0079026  -0.015   0.9883  
+factor(q_slg)4                -0.0029690  0.0079755  -0.372   0.7097  
+factor(q_obp)2:factor(q_slg)2  0.0058898  0.0103467   0.569   0.5693  
+factor(q_obp)3:factor(q_slg)2  0.0114542  0.0111073   1.031   0.3026  
+factor(q_obp)4:factor(q_slg)2  0.0238333  0.0115309   2.067   0.0389 *
+factor(q_obp)2:factor(q_slg)3 -0.0172511  0.0110278  -1.564   0.1179  
+factor(q_obp)3:factor(q_slg)3  0.0051448  0.0114451   0.450   0.6531  
+factor(q_obp)4:factor(q_slg)3  0.0131947  0.0116381   1.134   0.2571  
+factor(q_obp)2:factor(q_slg)4  0.0020468  0.0114818   0.178   0.8585  
+factor(q_obp)3:factor(q_slg)4  0.0048093  0.0115293   0.417   0.6766  
+factor(q_obp)4:factor(q_slg)4  0.0155281  0.0114545   1.356   0.1754  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.05474 on 1522 degrees of freedom
+  (7 observations deleted due to missingness)
+Multiple R-squared:  0.009627,	Adjusted R-squared:  -0.0001338 
+F-statistic: 0.9863 on 15 and 1522 DF,  p-value: 0.467
+
+
+==============================
+ [0] Baseline: z_cond_obp * z_focal_slg 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value   Pr(>|t|)    
+z_cond_obp             -0.020931   0.010430 -2.006869 4.5528e-02 *  
+z_focal_slg             0.037008   0.006262  5.910226 8.0730e-09 ***
+z_cond_obp:z_focal_slg  0.001030   0.002821  0.365152 7.1522e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.035798     Adj. R2: 0.055682
+                 Within R2: 0.027272
+
+==============================
+ [1] Discipline -> Power: z_cond_take * z_focal_slg 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                         Estimate Std. Error   t value   Pr(>|t|)    
+z_cond_take             -0.927907   9.363427 -0.099099 9.2112e-01    
+z_focal_slg              0.036603   0.006517  5.616693 3.9575e-08 ***
+z_cond_take:z_focal_slg  0.000240   0.002221  0.107904 9.1413e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.035914     Adj. R2: 0.049537
+                 Within R2: 0.020943
+
+==============================
+ [2] Contact -> Power: z_cond_contact * z_focal_slg 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                            Estimate Std. Error   t value   Pr(>|t|)    
+z_cond_contact             -2.441815  33.132260 -0.073699 9.4129e-01    
+z_focal_slg                 0.036545   0.006422  5.690476 2.6697e-08 ***
+z_cond_contact:z_focal_slg  0.001067   0.002713  0.393201 6.9441e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.03591     Adj. R2: 0.049748
+                Within R2: 0.02116 
+
+==============================
+ [3] Prior hard-contact -> focal power: z_cond_barrel * z_focal_slg 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                           Estimate Std. Error   t value   Pr(>|t|)    
+z_cond_barrel              0.014289   0.015766  0.906308 3.6539e-01    
+z_focal_slg                0.036464   0.006603  5.522138 6.5159e-08 ***
+z_cond_barrel:z_focal_slg -0.001676   0.003031 -0.552839 5.8072e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.035873     Adj. R2: 0.051674
+                 Within R2: 0.023143
+
+==============================
+ [4] OBP -> focal barrel skill: z_cond_obp * z_focal_barrel 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                           Estimate Std. Error   t value   Pr(>|t|)    
+z_cond_obp                -0.017288   0.010676 -1.619341 1.0627e-01    
+z_focal_barrel             0.035181   0.008469  4.154315 4.0995e-05 ***
+z_cond_obp:z_focal_barrel -0.001454   0.002819 -0.515997 6.0618e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.03595     Adj. R2: 0.047608
+                Within R2: 0.018955
+
+==============================
+ [5] Handedness sequencing: opp_side * z_focal_slg 
+==============================
+NOTES: 4 observations removed because of NA values (RHS: 4).
+       71/83 fixed-effect singletons were removed (152 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error   t value   Pr(>|t|)    
+factor(opp_side)1             -0.010315   0.005265 -1.959141 5.0885e-02 .  
+z_focal_slg                    0.036335   0.005448  6.669356 9.9694e-11 ***
+factor(opp_side)1:z_focal_slg -0.003220   0.006029 -0.534129 5.9359e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.035771     Adj. R2: 0.057086
+                 Within R2: 0.028719
+
+==============================
+ [6a] Approach contrast (swing gap): z_abs_swing_gap * z_focal_slg 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                             Estimate Std. Error   t value   Pr(>|t|)    
+z_abs_swing_gap              0.002235   0.003083  0.725088 4.6888e-01    
+z_focal_slg                  0.035881   0.006372  5.631246 3.6630e-08 ***
+z_abs_swing_gap:z_focal_slg -0.002139   0.002562 -0.834827 4.0438e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.035889     Adj. R2: 0.050835
+                 Within R2: 0.02228 
+
+==============================
+ [6b] Approach contrast (contact gap): z_abs_contact_gap * z_focal_slg 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error   t value   Pr(>|t|)    
+z_abs_contact_gap             -0.002412   0.002901 -0.831503 4.0625e-01    
+z_focal_slg                    0.039543   0.007094  5.574035 4.9599e-08 ***
+z_abs_contact_gap:z_focal_slg  0.006603   0.002454  2.690507 7.4745e-03 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.035739     Adj. R2: 0.058791
+                 Within R2: 0.030475
+
+==============================
+ [7a] z_cond_obp * z_focal_slg, num_pas>50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                        Estimate Std. Error   t value   Pr(>|t|)    
+z_cond_obp             -0.014948   0.016656 -0.897457 3.7057e-01    
+z_focal_slg             0.034407   0.008262  4.164614 4.6622e-05 ***
+z_cond_obp:z_focal_slg -0.000656   0.005519 -0.118787 9.0557e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026652     Adj. R2: -0.175755
+                 Within R2:  0.033434
+
+==============================
+ [7b] z_cond_take * z_focal_slg, num_pas>50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                         Estimate Std. Error   t value   Pr(>|t|)    
+z_cond_take             -0.046808 213.388935 -0.000219 9.9983e-01    
+z_focal_slg              0.035513   0.005913  6.006114 9.0157e-09 ***
+z_cond_take:z_focal_slg -0.007104   0.004234 -1.677772 9.4977e-02 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026595     Adj. R2: -0.170704
+                 Within R2:  0.037586
+
+==============================
+ [7c] z_abs_contact_gap * z_focal_slg, num_pas>50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error   t value   Pr(>|t|)    
+z_abs_contact_gap             -0.000999   0.005262 -0.189907 0.84957755    
+z_focal_slg                    0.039719   0.011596  3.425198 0.00074754 ***
+z_abs_contact_gap:z_focal_slg  0.010684   0.003984  2.681494 0.00795114 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026378     Adj. R2: -0.15171 
+                 Within R2:  0.053202
+
+==============================
+ [7c-40] z_abs_contact_gap * z_focal_slg, num_pas>40 
+==============================
+NOTE: 106/112 fixed-effect singletons were removed (209 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 882
+Weights: num_pas
+Fixed-effects: focal_batter_id: 273,  conditional_batter_id: 267
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error   t value   Pr(>|t|)    
+z_abs_contact_gap             -0.002322   0.003590 -0.646826 5.1829e-01    
+z_focal_slg                    0.044644   0.007982  5.593106 5.4295e-08 ***
+z_abs_contact_gap:z_focal_slg  0.008105   0.002920  2.775832 5.8882e-03 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.030162     Adj. R2: 0.009077
+                 Within R2: 0.05082 
+
+==============================
+ [7c-75] z_abs_contact_gap * z_focal_slg, num_pas>75 
+==============================
+NOTE: 174/179 fixed-effect singletons were removed (302 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 167
+Weights: num_pas
+Fixed-effects: focal_batter_id: 72,  conditional_batter_id: 71
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error   t value Pr(>|t|)    
+z_abs_contact_gap             -0.001086   0.008847 -0.122714 0.902680    
+z_focal_slg                    0.053489   0.027316  1.958123 0.054146 .  
+z_abs_contact_gap:z_focal_slg  0.008870   0.010077  0.880203 0.381719    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.021762     Adj. R2: -1.06484
+                 Within R2: 0.149485
+
+==============================
+ [7b-40] z_cond_take * z_focal_slg, num_pas>40 
+==============================
+NOTE: 106/112 fixed-effect singletons were removed (209 observations).
+The variable 'z_cond_take' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 882
+Weights: num_pas
+Fixed-effects: focal_batter_id: 273,  conditional_batter_id: 267
+Standard-errors: Clustered (focal_batter_id) 
+                         Estimate Std. Error  t value   Pr(>|t|)    
+z_focal_slg              0.043528   0.006080  7.15945 7.5655e-12 ***
+z_cond_take:z_focal_slg -0.005579   0.003289 -1.69648 9.0939e-02 .  
+... 1 variable was removed because of collinearity (z_cond_take)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.030289     Adj. R2: 0.003644
+                 Within R2: 0.042809
+
+==============================
+ [7b-75] z_cond_take * z_focal_slg, num_pas>75 
+==============================
+NOTE: 174/179 fixed-effect singletons were removed (302 observations).
+The variable 'z_cond_take' has been removed because of collinearity (see
+$collin.var).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 167
+Weights: num_pas
+Fixed-effects: focal_batter_id: 72,  conditional_batter_id: 71
+Standard-errors: Clustered (focal_batter_id) 
+                         Estimate Std. Error  t value   Pr(>|t|)    
+z_focal_slg              0.051617   0.005933  8.70058 8.4027e-13 ***
+z_cond_take:z_focal_slg -0.020727   0.004659 -4.44883 3.1281e-05 ***
+... 1 variable was removed because of collinearity (z_cond_take)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.020737     Adj. R2: -0.793412
+                 Within R2:  0.22771 
+
+==============================
+ [A1] signed z_contact_gap * z_focal_slg (full) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                           Estimate Std. Error   t value   Pr(>|t|)    
+z_contact_gap              2.028034  37.808743  0.053639 9.5725e-01    
+z_focal_slg                0.036291   0.006459  5.618736 3.9148e-08 ***
+z_contact_gap:z_focal_slg -0.001538   0.003905 -0.393686 6.9405e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.03591     Adj. R2: 0.049754
+                Within R2: 0.021166
+
+==============================
+ [A1r] signed z_contact_gap * z_focal_slg, num_pas>50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                           Estimate Std. Error   t value  Pr(>|t|)    
+z_contact_gap              0.039244 247.771805  0.000158 0.9998738    
+z_focal_slg                0.031225   0.008492  3.676935 0.0003044 ***
+z_contact_gap:z_focal_slg -0.005953   0.005984 -0.994863 0.3210235    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026702     Adj. R2: -0.18015 
+                 Within R2:  0.029821
+
+==============================
+ [A2-swing]  z_abs_swing_gap * z_focal_slg (full) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                             Estimate Std. Error   t value   Pr(>|t|)    
+z_abs_swing_gap              0.002235   0.003083  0.725088 4.6888e-01    
+z_focal_slg                  0.035881   0.006372  5.631246 3.6630e-08 ***
+z_abs_swing_gap:z_focal_slg -0.002139   0.002562 -0.834827 4.0438e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.035889     Adj. R2: 0.050835
+                 Within R2: 0.02228 
+
+==============================
+ [A2-swingr] z_abs_swing_gap * z_focal_slg, >50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                            Estimate Std. Error  t value   Pr(>|t|)    
+z_abs_swing_gap             0.007225   0.004609 1.567532 0.11859520    
+z_focal_slg                 0.034239   0.007992 4.284350 0.00002864 ***
+z_abs_swing_gap:z_focal_slg 0.002360   0.004252 0.555143 0.57942649    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026549     Adj. R2: -0.166626
+                 Within R2:  0.040939
+
+==============================
+ [A2-chase]  z_abs_chase_gap * z_focal_slg (full) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                             Estimate Std. Error   t value   Pr(>|t|)    
+z_abs_chase_gap              0.003550   0.002802  1.266750 2.0608e-01    
+z_focal_slg                  0.036613   0.006372  5.745948 1.9805e-08 ***
+z_abs_chase_gap:z_focal_slg -0.000073   0.002652 -0.027374 9.7818e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.035876     Adj. R2: 0.051547
+                 Within R2: 0.023013
+
+==============================
+ [A2-chaser] z_abs_chase_gap * z_focal_slg, >50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                            Estimate Std. Error  t value   Pr(>|t|)    
+z_abs_chase_gap             0.006883   0.004189 1.643085 1.0196e-01    
+z_focal_slg                 0.034396   0.008386 4.101435 6.0041e-05 ***
+z_abs_chase_gap:z_focal_slg 0.003492   0.004377 0.797828 4.2593e-01    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026538     Adj. R2: -0.165675
+                 Within R2:  0.041721
+
+==============================
+ [A2-swstr]  z_abs_swstr_gap * z_focal_slg (full) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                             Estimate Std. Error  t value   Pr(>|t|)    
+z_abs_swstr_gap             -0.004188   0.002967 -1.41146 1.5899e-01    
+z_focal_slg                  0.039040   0.006856  5.69449 2.6128e-08 ***
+z_abs_swstr_gap:z_focal_slg  0.005382   0.002657  2.02557 4.3563e-02 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.035785     Adj. R2: 0.056337
+                 Within R2: 0.027948
+
+==============================
+ [A2-swstrr] z_abs_swstr_gap * z_focal_slg, >50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                            Estimate Std. Error  t value   Pr(>|t|)    
+z_abs_swstr_gap             0.000365   0.005164 0.070652 0.94374671    
+z_focal_slg                 0.039592   0.011598 3.413817 0.00077763 ***
+z_abs_swstr_gap:z_focal_slg 0.011537   0.004050 2.848959 0.00485218 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.026287     Adj. R2: -0.14377 
+                 Within R2:  0.059729
+
+==============================
+ [A3-h1] |contact gap| x SLG, split-half #1 
+==============================
+NOTES: 1 observation removed because of NA values (RHS: 1).
+       205/223 fixed-effect singletons were removed (394 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 378
+Weights: num_pas
+Fixed-effects: focal_batter_id: 147,  conditional_batter_id: 146
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error   t value Pr(>|t|)    
+z_abs_contact_gap             -0.002070   0.006965 -0.297123 0.766795    
+z_focal_slg                    0.048678   0.019641  2.478420 0.014335 *  
+z_abs_contact_gap:z_focal_slg  0.012217   0.004885  2.500793 0.013496 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.025102     Adj. R2: 0.01635 
+                 Within R2: 0.068422
+
+==============================
+ [A3-h2] |contact gap| x SLG, split-half #2 
+==============================
+NOTES: 6 observations removed because of NA values (RHS: 6).
+       192/198 fixed-effect singletons were removed (355 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 411
+Weights: num_pas
+Fixed-effects: focal_batter_id: 162,  conditional_batter_id: 155
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error   t value Pr(>|t|) 
+z_abs_contact_gap             -0.007757   0.006737 -1.151472  0.25125 
+z_focal_slg                    0.020146   0.019681  1.023616  0.30755 
+z_abs_contact_gap:z_focal_slg  0.005033   0.007434  0.677004  0.49937 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.025652     Adj. R2: 0.031962
+                 Within R2: 0.020671
+
+==============================
+ [B1] opp_side x |contact gap| x SLG (full) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                                                 Estimate Std. Error   t value
+factor(opp_side)1                               -0.010454   0.005151 -2.029775
+z_abs_contact_gap                               -0.003053   0.003981 -0.767020
+z_focal_slg                                      0.036046   0.005722  6.299144
+factor(opp_side)1:z_abs_contact_gap              0.000857   0.004636  0.184792
+factor(opp_side)1:z_focal_slg                   -0.003231   0.005430 -0.595132
+z_abs_contact_gap:z_focal_slg                    0.002197   0.003359  0.654069
+factor(opp_side)1:z_abs_contact_gap:z_focal_slg  0.007285   0.004026  1.809439
+                                                  Pr(>|t|)    
+factor(opp_side)1                               4.3131e-02 *  
+z_abs_contact_gap                               4.4358e-01    
+z_focal_slg                                     8.9331e-10 ***
+factor(opp_side)1:z_abs_contact_gap             8.5350e-01    
+factor(opp_side)1:z_focal_slg                   5.5214e-01    
+z_abs_contact_gap:z_focal_slg                   5.1349e-01    
+factor(opp_side)1:z_abs_contact_gap:z_focal_slg 7.1236e-02 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.035505     Adj. R2: 0.06557 
+                 Within R2: 0.043128
+
+==============================
+ [B1r] opp_side x |contact gap| x SLG, num_pas>50 
+==============================
+NOTE: 138/128 fixed-effect singletons were removed (255 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 566
+Weights: num_pas
+Fixed-effects: focal_batter_id: 198,  conditional_batter_id: 200
+Standard-errors: Clustered (focal_batter_id) 
+                                                 Estimate Std. Error   t value
+factor(opp_side)1                               -0.024032   0.010160 -2.365219
+z_abs_contact_gap                               -0.003323   0.006549 -0.507406
+z_focal_slg                                      0.029173   0.010136  2.878236
+factor(opp_side)1:z_abs_contact_gap              0.001674   0.006569  0.254760
+factor(opp_side)1:z_focal_slg                   -0.010416   0.010461 -0.995675
+z_abs_contact_gap:z_focal_slg                    0.002672   0.006903  0.387079
+factor(opp_side)1:z_abs_contact_gap:z_focal_slg  0.010577   0.007463  1.417309
+                                                 Pr(>|t|)    
+factor(opp_side)1                               0.0189909 *  
+z_abs_contact_gap                               0.6124372    
+z_focal_slg                                     0.0044405 ** 
+factor(opp_side)1:z_abs_contact_gap             0.7991742    
+factor(opp_side)1:z_focal_slg                   0.3206294    
+z_abs_contact_gap:z_focal_slg                   0.6991158    
+factor(opp_side)1:z_abs_contact_gap:z_focal_slg 0.1579721    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.025248     Adj. R2: -0.081195
+                 Within R2:  0.132588
+
+==============================
+ [B2-same] |contact gap| x SLG, SAME-side pairs only 
+==============================
+NOTES: 4 observations removed because of NA values (RHS: 4).
+       218/231 fixed-effect singletons were removed (386 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 215
+Weights: num_pas
+Fixed-effects: focal_batter_id: 76,  conditional_batter_id: 79
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error   t value Pr(>|t|) 
+z_abs_contact_gap             -0.006858   0.006917 -0.991520  0.32462 
+z_focal_slg                    0.031771   0.066815  0.475508  0.63581 
+z_abs_contact_gap:z_focal_slg  0.000073   0.006612  0.011059  0.99121 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.02726     Adj. R2: -0.086068
+                Within R2:  0.008147
+
+==============================
+ [B2-opp]  |contact gap| x SLG, OPPOSITE-side pairs only 
+==============================
+NOTES: 3 observations removed because of NA values (RHS: 3).
+       138/160 fixed-effect singletons were removed (283 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 654
+Weights: num_pas
+Fixed-effects: focal_batter_id: 235,  conditional_batter_id: 220
+Standard-errors: Clustered (focal_batter_id) 
+                               Estimate Std. Error   t value   Pr(>|t|)    
+z_abs_contact_gap             -0.002278   0.004975 -0.457838 6.4749e-01    
+z_focal_slg                    0.244155   0.052384  4.660820 5.2901e-06 ***
+z_abs_contact_gap:z_focal_slg  0.006302   0.003731  1.688894 9.2572e-02 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.029731     Adj. R2: -0.132638
+                 Within R2:  0.024781
+
+==============================
+ [B3] opp_side x |contact gap| (full) 
+==============================
+NOTES: 7 observations removed because of NA values (RHS: 7).
+       71/80 fixed-effect singletons were removed (149 observations).
+OLS estimation, Dep. Var.: focal_delta_run_exp_pa
+Observations: 1,389
+Weights: num_pas
+Fixed-effects: focal_batter_id: 353,  conditional_batter_id: 355
+Standard-errors: Clustered (focal_batter_id) 
+                                     Estimate Std. Error  t value Pr(>|t|)    
+factor(opp_side)1                   -0.010837   0.005831 -1.85856 0.063924 .  
+z_abs_contact_gap                   -0.004966   0.004085 -1.21558 0.224960    
+factor(opp_side)1:z_abs_contact_gap  0.005519   0.004811  1.14711 0.252115    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036113     Adj. R2: 0.038985
+                 Within R2: 0.010073

@@ -1,0 +1,27 @@
+[2023] loading team CSVs from C:\Users\jaico\lineups\statcast hitters 2023 ...
+[2023] 81,528 PAs loaded.
+[2023] building baselines + swing/bat-tracking metrics ...
+Processed 100/433 hitters
+Processed 200/433 hitters
+Processed 300/433 hitters
+Processed 400/433 hitters
+Processed 433/433 hitters
+[2023] saved hitter_baselines_comprehensive_2023.parquet (455 hitters)
+[2023] computing conditional lineup stats ...
+
+Calculating comprehensive Statcast metrics for conditional pairs...
+(This may take several minutes depending on cache...)
+  Processed 50/626 conditional pairs
+  Processed 100/626 conditional pairs
+  Processed 150/626 conditional pairs
+  Processed 200/626 conditional pairs
+  Processed 250/626 conditional pairs
+  Processed 300/626 conditional pairs
+  Processed 350/626 conditional pairs
+  Processed 400/626 conditional pairs
+  Processed 450/626 conditional pairs
+  Processed 500/626 conditional pairs
+  Processed 550/626 conditional pairs
+  Processed 600/626 conditional pairs
+  Processed 626/626 conditional pairs
+[2023] saved conditional_lineup_stats_comprehensive_2023.parquet (626 pairs)

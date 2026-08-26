@@ -27,27 +27,45 @@ def get_actual_before_after_batters(pa_df: pd.DataFrame) -> pd.DataFrame:
         - batter_after: player ID who batted immediately after
     """
     d = pa_df.copy()
-    
+
     # Identify unique games
     if 'game_pk' in d.columns:
         game_id = 'game_pk'
     else:
         d['game_id'] = d['game_date'].astype(str) + '_' + d['team'].astype(str)
         game_id = 'game_id'
-    
-    # Sort by game and at-bat order
+
+    # IMPORTANT: at_bat_number is game-wide (counts BOTH teams' PAs in one
+    # sequence), so a naive shift within game_pk pairs a team's leadoff hitter
+    # with the OPPOSING team's last batter at every half-inning boundary. To get
+    # the true same-team lineup predecessor (including the #9 -> #1 wrap across
+    # innings), shift within each team's OWN batting sequence. Batting team =
+    # away team in the top of the inning, home team in the bottom.
+    if {'inning_topbot', 'home_team', 'away_team'}.issubset(d.columns):
+        is_top = d['inning_topbot'].astype(str).str.lower().str.startswith('top')
+        d['_bat_team'] = d['away_team'].where(is_top, d['home_team'])
+    elif 'team' in d.columns:
+        # Fallback: the per-row team tag (team CSVs are split by batting team)
+        d['_bat_team'] = d['team']
+    else:
+        raise ValueError("Need inning_topbot+home_team+away_team (or a 'team' column) "
+                         "to identify the batting team for same-team pairing.")
+
+    grp = [game_id, '_bat_team']
+
+    # Sort by game and at-bat order, then shift within (game, batting team)
     d = d.sort_values([game_id, 'at_bat_number']).reset_index(drop=True)
-    
-    # Shift within each game to get before/after batters AND their batting sides
-    d['batter_before'] = d.groupby(game_id)['batter'].shift(1)
-    d['batter_after'] = d.groupby(game_id)['batter'].shift(-1)
-    d['stand_before'] = d.groupby(game_id)['stand'].shift(1)  # NEW: batting side of previous batter
-    d['stand_after'] = d.groupby(game_id)['stand'].shift(-1)
-    
-    # Clean up temp column if created
+
+    d['batter_before'] = d.groupby(grp)['batter'].shift(1)
+    d['batter_after']  = d.groupby(grp)['batter'].shift(-1)
+    d['stand_before']  = d.groupby(grp)['stand'].shift(1)  # batting side of previous batter
+    d['stand_after']   = d.groupby(grp)['stand'].shift(-1)
+
+    # Clean up temp columns
+    d = d.drop(columns=['_bat_team'])
     if game_id == 'game_id':
         d = d.drop(columns=['game_id'])
-    
+
     return d
 
 
@@ -127,12 +145,9 @@ def calculate_conditional_stats(
     focal_pas["AB"] = (focal_pas["PA"] - focal_pas["BB"] - focal_pas["HBP"] - 
                        focal_pas["SAC"] - focal_pas["CI"]).clip(lower=0)
     
-    # Add barrel and pitch count
-    from avghitter import approx_is_barrel
-    focal_pas["is_barrel"] = focal_pas.apply(
-        lambda r: int(approx_is_barrel(r.get("launch_speed"), r.get("launch_angle"))), 
-        axis=1
-    )
+    # Add barrel and pitch count -- MLB's own Statcast classification
+    # (launch_speed_angle == 6 is "Barrel")
+    focal_pas["is_barrel"] = (pd.to_numeric(focal_pas.get("launch_speed_angle"), errors="coerce") == 6).astype(int)
     
     # Ensure numeric
     for c in ["pitch_number", "launch_speed", "launch_angle", "plate_x", "plate_z", "delta_run_exp"]:
@@ -231,8 +246,7 @@ def compute_comprehensive_swing_metrics(pitches: pd.DataFrame) -> dict:
     Calculate all 10 Statcast metrics from pitch-level data.
     
     Returns dict with: Swing_pct, Contact_pct, SweetSpot_pct, SwStr_pct, Chase_pct,
-                       Attack_Angle_median, Attack_Direction_median, Swing_Path_Tilt_median,
-                       Stance_Angle_median, Distance_Off_Plate_median
+                       Attack_Angle_median, Attack_Direction_median, Swing_Path_Tilt_median
     """
     from swing_and_battracking_metrics import compute_all_swing_metrics, compute_bat_tracking_metrics
     
@@ -279,14 +293,12 @@ def calculate_all_conditional_stats(
     NEW COLUMNS ADDED (if include_bat_tracking=True):
         Focal batter (conditional):
             - focal_SweetSpot_pct
-            - focal_SwStr_pct  
+            - focal_SwStr_pct
             - focal_Chase_pct
             - focal_Attack_Angle_median
             - focal_Attack_Direction_median
             - focal_Swing_Path_Tilt_median
-            - focal_Stance_Angle_median
-            - focal_Distance_Off_Plate_median
-            
+
         Focal batter (season):
             - focal_season_SweetSpot_pct
             - focal_season_SwStr_pct
@@ -294,8 +306,6 @@ def calculate_all_conditional_stats(
             - focal_season_Attack_Angle_median
             - focal_season_Attack_Direction_median
             - focal_season_Swing_Path_Tilt_median
-            - focal_season_Stance_Angle_median
-            - focal_season_Distance_Off_Plate_median
     """
     d = get_actual_before_after_batters(pa_df)
     
@@ -311,10 +321,8 @@ def calculate_all_conditional_stats(
         if game_id == 'temp_game_id':
             d = d.drop(columns=['temp_game_id'])
     
-    # Filter out first PAs (no batter before)
-    d = d.dropna(subset=['batter_before', 'stand_before'])
-    
-    # Calculate outcome flags
+    # Calculate outcome flags. NOTE: do this on ALL PAs (before dropping leadoff
+    # PAs) so we can also line up each PA's *predecessor* outcome below.
     hit_tb = {"single": 1, "double": 2, "triple": 3, "home_run": 4}
     d["TB"] = d["events"].map(hit_tb).fillna(0).astype(int)
     d["H"] = (d["TB"] > 0).astype(int)
@@ -325,17 +333,55 @@ def calculate_all_conditional_stats(
     d["SF"] = (d["events"] == "sac_fly").astype(int)
     d["PA"] = 1
     d["AB"] = (d["PA"] - d["BB"] - d["HBP"] - d["SAC"] - d["CI"]).clip(lower=0)
-    
-    # Barrel detection
-    from avghitter import approx_is_barrel
-    for c in ["launch_speed", "launch_angle", "pitch_number", "plate_x", "plate_z", "delta_run_exp"]:
+
+    # Barrel detection -- MLB's own Statcast classification
+    # (launch_speed_angle == 6 is "Barrel")
+    for c in ["launch_speed", "launch_angle", "launch_speed_angle", "pitch_number", "plate_x", "plate_z", "delta_run_exp"]:
         if c in d.columns:
             d[c] = pd.to_numeric(d[c], errors="coerce")
-    
-    d["is_barrel"] = d.apply(
-        lambda r: int(approx_is_barrel(r.get("launch_speed"), r.get("launch_angle"))), 
-        axis=1
-    )
+
+    d["is_barrel"] = (d["launch_speed_angle"] == 6).astype(int)
+
+    # --- Conditional (previous) hitter's OWN outcome, aligned to each focal PA ---
+    # Carry the immediately-preceding SAME-TEAM PA's outcome onto every row -- that
+    # predecessor is the "conditional" hitter. We shift the outcome columns within
+    # the exact same (game, batting-team) ordering that get_actual_before_after_
+    # batters used to build batter_before, so H_before, TB_before, ... line up with
+    # batter_before on every row. Summing these per (focal, focal_side, conditional,
+    # conditional_side) group then gives the conditional hitter's real line in the
+    # PAs where this focal hitter batted immediately after them. This MUST happen
+    # before the leadoff dropna, or the 1st->2nd batter pairing in each half of the
+    # lineup would be lost.
+    if 'game_pk' in d.columns:
+        _gid = 'game_pk'
+    else:
+        d['_cond_game_id'] = d['game_date'].astype(str) + '_' + d['team'].astype(str)
+        _gid = '_cond_game_id'
+    if {'inning_topbot', 'home_team', 'away_team'}.issubset(d.columns):
+        _is_top = d['inning_topbot'].astype(str).str.lower().str.startswith('top')
+        d['_cond_bat_team'] = d['away_team'].where(_is_top, d['home_team'])
+    elif 'team' in d.columns:
+        d['_cond_bat_team'] = d['team']
+    else:
+        raise ValueError("Need inning_topbot+home_team+away_team (or a 'team' column) "
+                         "to line up the previous batter's outcome.")
+
+    d = d.sort_values([_gid, 'at_bat_number']).reset_index(drop=True)
+    _before_src = ["H", "TB", "AB", "BB", "HBP", "SF", "is_barrel", "pitch_number", "delta_run_exp"]
+    _grp_before = d.groupby([_gid, '_cond_bat_team'])
+    for _c in _before_src:
+        d[f"{_c}_before"] = _grp_before[_c].shift(1)
+    # at_bat_number of the predecessor PA, so the conditional hitter's exact PAs
+    # can be picked out of the pitch cache (used for PA-level pitch-metric filtering).
+    d['at_bat_number_before'] = _grp_before['at_bat_number'].shift(1)
+
+    d = d.drop(columns=['_cond_bat_team'])
+    if _gid == '_cond_game_id':
+        d = d.drop(columns=['_cond_game_id'])
+
+    # Filter out first PAs (no batter before). This also drops the leadoff rows
+    # whose *_before columns are undefined.
+    d = d.dropna(subset=['batter_before', 'stand_before'])
     
     # Group by focal batter, conditional batter, AND both batting sides
     grouped = (
@@ -397,18 +443,23 @@ def calculate_all_conditional_stats(
     results['focal_delta_run_exp_PA'] = np.where(results['num_PAs'] > 0, results['delta_run_exp_sum'] / results['num_PAs'], np.nan)
     
     # Calculate conditional batter stats (their actual performance in those same PAs)
+    # The *_before columns were aligned to each focal PA above (the previous
+    # same-team PA = the conditional hitter's PA in that spot), so a straight sum
+    # per group is the conditional hitter's real totals in exactly those PAs.
+    # num_PAs (from the focal grouping) counts one predecessor per focal PA, so it
+    # is the matching PA denominator for the per-PA rates below.
     conditional_grouped = (
         d.groupby(['batter', 'stand', 'batter_before', 'stand_before'])
         .agg(
-            H_before=("H", lambda x: x.shift(1).sum()),  # Stats from previous PA
-            TB_before=("TB", lambda x: x.shift(1).sum()),
-            AB_before=("AB", lambda x: x.shift(1).sum()),
-            BB_before=("BB", lambda x: x.shift(1).sum()),
-            HBP_before=("HBP", lambda x: x.shift(1).sum()),
-            SF_before=("SF", lambda x: x.shift(1).sum()),
-            Barrels_before=("is_barrel", lambda x: x.shift(1).sum()),
-            pitches_sum_before=("pitch_number", lambda x: x.shift(1).sum()),
-            delta_run_exp_sum_before=("delta_run_exp", lambda x: x.shift(1).sum()),
+            H_before=("H_before", "sum"),
+            TB_before=("TB_before", "sum"),
+            AB_before=("AB_before", "sum"),
+            BB_before=("BB_before", "sum"),
+            HBP_before=("HBP_before", "sum"),
+            SF_before=("SF_before", "sum"),
+            Barrels_before=("is_barrel_before", "sum"),
+            pitches_sum_before=("pitch_number_before", "sum"),
+            delta_run_exp_sum_before=("delta_run_exp_before", "sum"),
         )
         .reset_index()
         .rename(columns={
@@ -470,24 +521,25 @@ def calculate_all_conditional_stats(
         d['temp_game_id'] = d['game_date'].astype(str) + '_' + d['team'].astype(str)
         game_id_col = 'temp_game_id'
     
-    # Build mapping: focal_batter -> {(conditional_batter, focal_side, cond_side) -> set of game_pks}
-    focal_to_conditional_games = {}
-    for _, row in d.iterrows():
-        focal_id = int(row['batter'])
-        cond_id = int(row['batter_before']) if pd.notna(row['batter_before']) else None
-        focal_side = row['stand']
-        cond_side = row['stand_before']
-        game_id = row[game_id_col]
-        
-        if cond_id is None or pd.isna(cond_side):
-            continue
-            
-        if focal_id not in focal_to_conditional_games:
-            focal_to_conditional_games[focal_id] = {}
-        key = (cond_id, focal_side, cond_side)
-        if key not in focal_to_conditional_games[focal_id]:
-            focal_to_conditional_games[focal_id][key] = set()
-        focal_to_conditional_games[focal_id][key].add(game_id)
+    # Build PA-level key sets per (focal, conditional, focal_side, cond_side) pair:
+    #   focal_pa_keys -> the focal hitter's qualifying PAs     as {(game, at_bat_number)}
+    #   cond_pa_keys  -> the conditional hitter's matching PAs as {(game, at_bat_number_before)}
+    # Filtering the pitch caches on these EXACT PAs (rather than on whole games)
+    # keeps the pitch-derived metrics on the same plate appearances as the event
+    # stats. Filtering by game would leak in the focal hitter's other PAs from any
+    # game where the pairing happened even once.
+    focal_pa_keys = {}
+    cond_pa_keys = {}
+    _key_src = d.dropna(subset=['batter_before', 'stand_before', 'at_bat_number_before'])
+    for (fid, fside, cid, cside), grp in _key_src.groupby(
+        ['batter', 'stand', 'batter_before', 'stand_before']
+    ):
+        pair_key = (int(fid), int(cid), fside, cside)
+        games = grp[game_id_col].to_numpy().tolist()
+        focal_abn = grp['at_bat_number'].astype('int64').to_numpy().tolist()
+        cond_abn = grp['at_bat_number_before'].astype('int64').to_numpy().tolist()
+        focal_pa_keys[pair_key] = set(zip(games, focal_abn))
+        cond_pa_keys[pair_key] = set(zip(games, cond_abn))
     
     # Now calculate comprehensive metrics for each row in results
     statcast_data = []
@@ -501,14 +553,7 @@ def calculate_all_conditional_stats(
         
         # Load cached pitch data for focal batter
         cache_path = cache_dir / f"{focal_id}_{start_date}_{end_date}.parquet"
-        
-        if idx < 5:
-            print("\nDEBUG focal_id:", focal_id)
-            print("DEBUG cond_id:", cond_id)
-            print("DEBUG focal_side:", focal_side)
-            print("DEBUG cond_side:", cond_side)
-            print("DEBUG cache exists:", cache_path.exists())
-        
+
         if not cache_path.exists():
             # No pitch data available - fill with NaN
             empty_metrics = {
@@ -520,8 +565,6 @@ def calculate_all_conditional_stats(
                     'focal_Attack_Angle_median': np.nan,
                     'focal_Attack_Direction_median': np.nan,
                     'focal_Swing_Path_Tilt_median': np.nan,
-                    'focal_Stance_Angle_median': np.nan,
-                    'focal_Distance_Off_Plate_median': np.nan
                 })
             statcast_data.append(empty_metrics)
             continue
@@ -538,35 +581,21 @@ def calculate_all_conditional_stats(
                     'focal_Attack_Angle_median': np.nan,
                     'focal_Attack_Direction_median': np.nan,
                     'focal_Swing_Path_Tilt_median': np.nan,
-                    'focal_Stance_Angle_median': np.nan,
-                    'focal_Distance_Off_Plate_median': np.nan
                 })
             statcast_data.append(empty_metrics)
             continue
         
-        # Filter to only games where conditional batter batted before focal batter with these specific sides
-        key = (cond_id, focal_side, cond_side)
-        if focal_id in focal_to_conditional_games and key in focal_to_conditional_games[focal_id]:
-            relevant_games = focal_to_conditional_games[focal_id][key]
-            # Filter by games AND by batting side
+        # Filter to the focal hitter's EXACT qualifying PAs (matching game AND
+        # at_bat_number), not merely to games where the pairing occurred.
+        pair_key = (focal_id, cond_id, focal_side, cond_side)
+        focal_keyset = focal_pa_keys.get(pair_key)
+        if focal_keyset:
+            pa_index = pd.MultiIndex.from_arrays(
+                [pitch_data['game_pk'], pitch_data['at_bat_number']]
+            )
             filtered_pitches = pitch_data[
-                (pitch_data['game_pk'].isin(relevant_games)) & 
-                (pitch_data['stand'] == focal_side)
+                pa_index.isin(focal_keyset) & (pitch_data['stand'] == focal_side)
             ]
-            if idx < 5:
-                print("DEBUG relevant_games count:", len(relevant_games) if 'relevant_games' in locals() else 0)
-                print("DEBUG filtered_pitches rows:", len(filtered_pitches))
-                print("DEBUG pitch_data rows:", len(pitch_data))
-                print("DEBUG pitch_data columns:", pitch_data.columns.tolist())
-            
-                if 'stand' in pitch_data.columns:
-                    print("DEBUG pitch stand unique:", pitch_data['stand'].dropna().unique())
-            
-                if 'game_pk' in pitch_data.columns:
-                    print("DEBUG pitch game_pk dtype:", pitch_data['game_pk'].dtype)
-                    print("DEBUG sample pitch game_pk:", pitch_data['game_pk'].dropna().head().tolist())
-            
-                print("DEBUG sample relevant_games:", list(relevant_games)[:5] if 'relevant_games' in locals() else [])
         else:
             filtered_pitches = pd.DataFrame()
         
@@ -580,18 +609,29 @@ def calculate_all_conditional_stats(
         if conditional_cache_path.exists():
             try:
                 conditional_pitch_data = pd.read_parquet(conditional_cache_path)
-    
-                # Same relevant games, but filter to the conditional batter's hitting side
+
+                # The conditional hitter's EXACT PAs that immediately preceded the
+                # focal hitter's qualifying PAs (matching game AND at_bat_number),
+                # not every PA he had in those games.
+                cond_keyset = cond_pa_keys.get(pair_key, set())
+                cond_pa_index = pd.MultiIndex.from_arrays(
+                    [conditional_pitch_data['game_pk'], conditional_pitch_data['at_bat_number']]
+                )
                 conditional_filtered_pitches = conditional_pitch_data[
-                    (conditional_pitch_data['game_pk'].isin(relevant_games)) &
+                    cond_pa_index.isin(cond_keyset) &
                     (conditional_pitch_data['stand'] == cond_side)
                 ]
     
                 conditional_metrics_raw = compute_comprehensive_swing_metrics(conditional_filtered_pitches)
                 conditional_metrics = {f'conditional_{k}': v for k, v in conditional_metrics_raw.items()}
-                
+
                 # Calculate conditional Nitro zone from barrels in these games
-                if 'is_barrel' in conditional_filtered_pitches.columns:
+                # (MLB's own Statcast classification: launch_speed_angle == 6 is "Barrel")
+                if 'launch_speed_angle' in conditional_filtered_pitches.columns:
+                    conditional_filtered_pitches = conditional_filtered_pitches.copy()
+                    conditional_filtered_pitches['is_barrel'] = (
+                        pd.to_numeric(conditional_filtered_pitches['launch_speed_angle'], errors='coerce') == 6
+                    ).astype(int)
                     barrels = conditional_filtered_pitches[conditional_filtered_pitches['is_barrel'] == 1]
                     if len(barrels) > 0 and 'plate_x' in barrels.columns and 'plate_z' in barrels.columns:
                         conditional_nitro_x = barrels['plate_x'].median()

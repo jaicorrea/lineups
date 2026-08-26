@@ -1,0 +1,102 @@
+Pulling pitch-level Statcast for 2024-03-15 -> 2024-10-05 (this can take 15-40 min for a full season)...
+This is a large query, it may take a moment to complete
+  0%|          | 0/205 [00:00<?, ?it/s]  0%|          | 1/205 [00:00<02:50,  1.20it/s]  6%|6         | 13/205 [00:01<00:19, 10.00it/s]  8%|7         | 16/205 [00:01<00:16, 11.39it/s] 11%|#1        | 23/205 [00:01<00:09, 18.35it/s] 13%|#3        | 27/205 [00:02<00:15, 11.47it/s] 16%|#5        | 32/205 [00:02<00:11, 14.80it/s] 18%|#8        | 37/205 [00:03<00:13, 12.80it/s] 20%|#9        | 40/205 [00:03<00:12, 13.70it/s] 21%|##        | 43/205 [00:03<00:10, 14.83it/s] 22%|##2       | 46/205 [00:03<00:09, 16.61it/s] 24%|##3       | 49/205 [00:03<00:11, 13.55it/s] 25%|##4       | 51/205 [00:04<00:12, 12.36it/s] 26%|##6       | 54/205 [00:04<00:11, 13.12it/s] 28%|##7       | 57/205 [00:04<00:10, 14.80it/s] 30%|##9       | 61/205 [00:04<00:10, 14.01it/s] 31%|###       | 63/205 [00:04<00:10, 13.96it/s] 32%|###1      | 65/205 [00:05<00:10, 13.55it/s] 33%|###2      | 67/205 [00:05<00:11, 11.89it/s] 34%|###3      | 69/205 [00:05<00:10, 12.45it/s] 35%|###5      | 72/205 [00:05<00:08, 15.62it/s] 36%|###6      | 74/205 [00:05<00:11, 11.84it/s] 38%|###7      | 77/205 [00:05<00:08, 14.42it/s] 39%|###8      | 79/205 [00:06<00:09, 13.29it/s] 40%|###9      | 81/205 [00:06<00:09, 12.86it/s] 40%|####      | 83/205 [00:06<00:09, 13.26it/s] 41%|####1     | 85/205 [00:06<00:08, 13.52it/s] 42%|####2     | 87/205 [00:06<00:09, 12.51it/s] 43%|####3     | 89/205 [00:06<00:08, 13.81it/s] 44%|####4     | 91/205 [00:07<00:08, 13.05it/s] 45%|####5     | 93/205 [00:07<00:09, 11.43it/s] 46%|####6     | 95/205 [00:07<00:09, 11.00it/s] 48%|####7     | 98/205 [00:07<00:08, 11.97it/s] 49%|####9     | 101/205 [00:07<00:07, 14.01it/s] 50%|#####     | 103/205 [00:07<00:06, 14.77it/s] 51%|#####1    | 105/205 [00:08<00:08, 12.41it/s] 52%|#####2    | 107/205 [00:08<00:08, 11.93it/s] 54%|#####3    | 110/205 [00:08<00:08, 11.81it/s] 55%|#####5    | 113/205 [00:08<00:06, 13.58it/s] 56%|#####6    | 115/205 [00:08<00:07, 12.78it/s] 57%|#####7    | 117/205 [00:09<00:07, 11.28it/s] 59%|#####8    | 120/205 [00:09<00:06, 12.65it/s] 60%|#####9    | 122/205 [00:09<00:07, 11.21it/s] 61%|######    | 125/205 [00:09<00:06, 12.12it/s] 62%|######1   | 127/205 [00:10<00:06, 11.35it/s] 63%|######2   | 129/205 [00:10<00:06, 10.95it/s] 64%|######4   | 132/205 [00:10<00:05, 12.52it/s] 65%|######5   | 134/205 [00:10<00:06, 11.30it/s] 67%|######6   | 137/205 [00:10<00:05, 12.66it/s] 68%|######7   | 139/205 [00:11<00:05, 11.05it/s] 69%|######8   | 141/205 [00:11<00:05, 11.14it/s] 70%|#######   | 144/205 [00:11<00:04, 14.19it/s] 71%|#######1  | 146/205 [00:11<00:04, 12.83it/s] 73%|#######2  | 149/205 [00:11<00:03, 15.48it/s] 74%|#######3  | 151/205 [00:11<00:03, 14.89it/s] 75%|#######4  | 153/205 [00:12<00:04, 12.06it/s] 76%|#######5  | 155/205 [00:12<00:04, 11.94it/s] 77%|#######7  | 158/205 [00:12<00:03, 13.00it/s] 79%|#######8  | 161/205 [00:12<00:02, 15.43it/s] 80%|#######9  | 163/205 [00:12<00:02, 15.29it/s] 80%|########  | 165/205 [00:12<00:03, 13.26it/s] 81%|########1 | 167/205 [00:13<00:03, 10.99it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 82%|########2 | 169/205 [00:14<00:11,  3.16it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 83%|########2 | 170/205 [00:15<00:13,  2.65it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 83%|########3 | 171/205 [00:19<00:32,  1.04it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 84%|########3 | 172/205 [00:19<00:29,  1.11it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 84%|########4 | 173/205 [00:20<00:30,  1.06it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 85%|########4 | 174/205 [00:21<00:28,  1.10it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 85%|########5 | 175/205 [00:22<00:24,  1.22it/s] 86%|########5 | 176/205 [00:22<00:18,  1.53it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 86%|########6 | 177/205 [00:25<00:34,  1.24s/it] 87%|########7 | 179/205 [00:25<00:18,  1.40it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 88%|########7 | 180/205 [00:25<00:17,  1.42it/s] 88%|########8 | 181/205 [00:26<00:13,  1.79it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 89%|########8 | 182/205 [00:27<00:17,  1.31it/s] 89%|########9 | 183/205 [00:27<00:12,  1.71it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 90%|########9 | 184/205 [00:29<00:23,  1.10s/it]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 90%|######### | 185/205 [00:32<00:28,  1.45s/it]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 91%|######### | 186/205 [00:33<00:27,  1.43s/it] 91%|#########1| 187/205 [00:33<00:19,  1.06s/it]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 92%|#########1| 188/205 [00:35<00:22,  1.33s/it]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 92%|#########2| 189/205 [00:37<00:24,  1.51s/it]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 94%|#########3| 192/205 [00:38<00:10,  1.25it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 95%|#########4| 194/205 [00:39<00:07,  1.56it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 95%|#########5| 195/205 [00:39<00:06,  1.51it/s] 96%|#########5| 196/205 [00:40<00:04,  1.82it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 96%|#########6| 197/205 [00:40<00:04,  1.68it/s] 97%|#########6| 198/205 [00:41<00:04,  1.41it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 97%|#########7| 199/205 [00:41<00:03,  1.81it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 98%|#########7| 200/205 [00:42<00:02,  1.85it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 98%|#########8| 201/205 [00:43<00:02,  1.84it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 99%|#########8| 202/205 [00:43<00:01,  2.05it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+ 99%|#########9| 203/205 [00:43<00:00,  2.36it/s]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+100%|#########9| 204/205 [00:46<00:01,  1.19s/it]C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\datahelpers\postprocessing.py:59: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_datetime without passing `errors` and catch exceptions explicitly instead
+  data_copy[column] = data_copy[column].apply(pd.to_datetime, errors='ignore', format=date_format)
+100%|##########| 205/205 [00:47<00:00,  1.05s/it]100%|##########| 205/205 [00:47<00:00,  4.33it/s]
+C:\Users\jaico\anaconda3\Lib\site-packages\pybaseball\statcast.py:85: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  final_data = pd.concat(dataframe_list, axis=0).convert_dtypes(convert_string=False)
+  Pulled 751,131 pitch-level rows.
+  711,899 rows after regular-season (game_type=='R') filter.
+
+Building per-batter pitch cache...
+  cached 100/651 batters
+  cached 200/651 batters
+  cached 300/651 batters
+  cached 400/651 batters
+  cached 500/651 batters
+  cached 600/651 batters
+  cached 651/651 batters
+Wrote 651 per-batter pitch files to C:\Users\jaico\lineups\statcast_pitch_cache_2024
+
+  182,765 plate appearances after collapsing to PA level.
+
+Wrote 30 team files to C:\Users\jaico\lineups\statcast hitters 2024
+Total PAs: 182,765  |  Unique batters: 651

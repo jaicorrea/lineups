@@ -8,29 +8,6 @@ Created on Thu Feb  5 14:50:57 2026
 import numpy as np
 import pandas as pd
 
-# -----------------------
-# 1) Barrel flag (approx from launch_speed + launch_angle)
-# -----------------------
-def approx_is_barrel(ev_mph: float, la_deg: float) -> bool:
-    """
-    Approximation based on MLB Statcast's published barrel window.
-    Linear expansion from 98-100 mph (1 deg/mph), then faster 100+ mph (2 deg/mph).
-    """
-    if pd.isna(ev_mph) or pd.isna(la_deg) or ev_mph < 98:
-        return False
-    if ev_mph >= 116:
-        return 8 <= la_deg <= 50
-
-    if ev_mph < 101:
-        lo = 26 - (ev_mph - 98)      # shrinks 1 per mph
-        hi = 30 + (ev_mph - 98)      # grows 1 per mph
-    else:
-        extra = int(np.floor(ev_mph - 100))
-        lo = max(24 - 2 * extra, 8)  # shrinks 2 per mph
-        hi = min(33 + 2 * extra, 50) # grows 2 per mph
-
-    return lo <= la_deg <= hi
-
 def mode_or_nan(s: pd.Series):
     s = s.dropna()
     return s.mode().iloc[0] if not s.empty else np.nan
@@ -72,8 +49,8 @@ def hitter_baselines_from_pa_df(df: pd.DataFrame, min_pa: int | None = None) -> 
 
     d["AB"] = (d["PA"] - d["BB"] - d["HBP"] - d["SAC"] - d["CI"]).clip(lower=0)
 
-    # Barrel flag (approx)
-    d["is_barrel"] = d.apply(lambda r: int(approx_is_barrel(r["launch_speed"], r["launch_angle"])), axis=1)
+    # Barrel flag: MLB's own Statcast classification (launch_speed_angle == 6 is "Barrel")
+    d["is_barrel"] = (pd.to_numeric(d["launch_speed_angle"], errors="coerce") == 6).astype(int)
 
     # Aggregate per hitter AND batting side (for switch hitters)
     out = (

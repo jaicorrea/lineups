@@ -156,12 +156,7 @@ def compute_bat_tracking_metrics(pitches: pd.DataFrame) -> dict[str, float]:
         - attack_angle: Vertical angle of bat at contact (degrees)
         - attack_direction: Horizontal angle toward pull/oppo (degrees)
         - swing_path_tilt: Angle of swing plane (degrees)
-    
-    Stance metrics (available 2024+):
-        - stance_feet_spread: Distance between feet (inches)
-        - stance_angle: How open/closed the stance is (degrees)
-        - distance_off_plate: Distance from plate (inches)
-    
+
     Returns dictionary with median values for competitive swings.
     """
     if pitches is None or pitches.empty:
@@ -169,8 +164,6 @@ def compute_bat_tracking_metrics(pitches: pd.DataFrame) -> dict[str, float]:
             "Attack_Angle_median": np.nan,
             "Attack_Direction_median": np.nan,
             "Swing_Path_Tilt_median": np.nan,
-            "Stance_Angle_median": np.nan,
-            "Distance_Off_Plate_median": np.nan,
         }
     
     # Filter to competitive swings only (swings with data)
@@ -196,19 +189,7 @@ def compute_bat_tracking_metrics(pitches: pd.DataFrame) -> dict[str, float]:
         results["Swing_Path_Tilt_median"] = float(swing_data["swing_path_tilt"].median()) if swing_data["swing_path_tilt"].notna().any() else np.nan
     else:
         results["Swing_Path_Tilt_median"] = np.nan
-    
-    # Stance Angle (open/closed stance)
-    if "stance_angle" in swing_data.columns:
-        results["Stance_Angle_median"] = float(swing_data["stance_angle"].median()) if swing_data["stance_angle"].notna().any() else np.nan
-    else:
-        results["Stance_Angle_median"] = np.nan
-    
-    # Distance Off Plate
-    if "distance_off_plate" in swing_data.columns:
-        results["Distance_Off_Plate_median"] = float(swing_data["distance_off_plate"].median()) if swing_data["distance_off_plate"].notna().any() else np.nan
-    else:
-        results["Distance_Off_Plate_median"] = np.nan
-    
+
     return results
 
 
@@ -251,13 +232,10 @@ def add_comprehensive_statcast_metrics(
         - Attack_Angle_median: Median attack angle
         - Attack_Direction_median: Median attack direction
         - Swing_Path_Tilt_median: Median swing path tilt
-        - Stance_Angle_median: Median stance angle
-        - Distance_Off_Plate_median: Median distance from plate
-    
+
     Uses disk caching to avoid re-downloading pitch data.
-    
+
     NOTE: Bat tracking data (attack angle, etc.) only available from 2H 2023 onward.
-          Stance metrics only available from 2024 onward.
     """
     from pybaseball import statcast_batter
     
@@ -276,9 +254,8 @@ def add_comprehensive_statcast_metrics(
             "GroundBall_pct", "FlyBall_pct", "LineDrive_pct", "PopUp_pct"
         ]
     }    
-    bat_tracking_results = {metric: {} for metric in ["Attack_Angle_median", "Attack_Direction_median", 
-                                                            "Swing_Path_Tilt_median", "Stance_Angle_median",
-                                                            "Distance_Off_Plate_median"]}
+    bat_tracking_results = {metric: {} for metric in ["Attack_Angle_median", "Attack_Direction_median",
+                                                            "Swing_Path_Tilt_median"]}
     
     @retry_with_backoff(max_retries, sleep_s)
     def fetch_batter_data(batter_id: int) -> pd.DataFrame:
@@ -299,7 +276,15 @@ def add_comprehensive_statcast_metrics(
         except Exception as e:
             print(f"[WARN] Failed batter {bid}: {e}")
             pitches = None
-        
+
+        # Regular season only. The manually-downloaded 2025 pitch cache (and any
+        # statcast_batter() fallback) can include spring-training ('S') games,
+        # whereas the PA-level team CSVs that build the event stats are RS-only.
+        # Filtering here keeps the swing / bat-tracking metrics on the same
+        # regular-season footing (a no-op for caches that are already RS-only).
+        if pitches is not None and "game_type" in getattr(pitches, "columns", []):
+            pitches = pitches[pitches["game_type"] == "R"]
+
         # Compute swing metrics
         swing_metrics = compute_all_swing_metrics(pitches)
         for metric, value in swing_metrics.items():
