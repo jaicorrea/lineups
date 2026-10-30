@@ -8,9 +8,9 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
-DIRS = {2023: "statcast hitters 2023 full", 2024: "statcast hitters 2024",
+DIRS = {2023: "statcast hitters 2023", 2024: "statcast hitters 2024",
         2025: "statcast hitters", 2026: "statcast hitters 2026"}
-COLS = ["batter", "game_pk", "at_bat_number", "game_type", "home_team", "away_team", "inning_topbot"]
+COLS = ["batter", "game_pk", "at_bat_number", "game_type", "home_team", "away_team", "inning_topbot", "events"]
 
 rows, mism = [], []
 for yr, dn in DIRS.items():
@@ -18,6 +18,7 @@ for yr, dn in DIRS.items():
         d = pd.read_csv(f, usecols=lambda c: c in COLS, low_memory=False)
         if "game_type" in d:
             d = d[d["game_type"] == "R"]
+        d = d[d["events"] != "truncated_pa"]   # dropped in every season
         bat_team = d["home_team"].where(d["inning_topbot"] == "Bot", d["away_team"])
         file_team = f.stem.upper()
         mism.append((yr, file_team, bat_team.str.upper().ne(file_team).mean(), bat_team.mode().iat[0] if len(bat_team) else None))
