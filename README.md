@@ -25,6 +25,8 @@ The analysis data were built with `build_season.py <year> --tag <year>_all --min
 
 Pairing rule (`lineup_context.py`): the predecessor is the previous batter *on the same team in the same game*, so the first batter of an inning is paired with his own team's last batter from the previous inning. Barrel is Statcast's own classification (`launch_speed_angle == 6`). Swing and bat-tracking metrics use regular-season pitches only.
 
+**Truncated PAs are disregarded in every season.** Statcast's `events == 'truncated_pa'` rows (a plate appearance cut short, almost always by a third-out baserunning play such as a caught stealing, and in two 2025 cases a walk-off mid-at-bat) are dropped before any pairing, baseline, team or K/BB calculation (`build_season.py`, `attach_team.py`, `build_team_lookup.py`, `build_kbb_traits.py`, `trait_reliability.py`). They are dropped so that no hitter is his own predecessor: the batter leads off the next inning, so keeping the row paired him with himself (78, 221 and 213 self-pairs in 2023, 2024 and 2026 before the filter). The hand-downloaded 2025 files never contained these rows, but 2023, 2024 and 2026 do (107, 316 and 329), so the filter is applied to all four seasons to keep them consistent. The raw PA files are left as Savant delivered them, and the pitches from those PAs still count toward the season swing and bat-tracking baselines (the pitch caches are not filtered), in every season.
+
 Earlier-iteration (2025-only) scripts still in this folder and not used for the current results: `statcast_research.py`, `run_analysis.py`, `lineup_extract.py`, `research_scratch.py`, `tablesort_scratch.py`, `swing_pct_statcast.py`.
 
 ### `analysis/` — final analysis
