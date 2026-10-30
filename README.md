@@ -34,8 +34,8 @@ Earlier-iteration (2025-only) scripts still in this folder and not used for the 
 | `production_tests.R` | Five post hoc production interactions (cond OBP x focal SLG, cond Barrel/PA x focal BB%, cond K% x focal BB%, cond K-BB% x focal Barrel/PA, cond OBP x focal BA) on focal Barrel/PA, focal run value and predecessor run value; writes `production_pooled.csv` and `production_by_season.csv` |
 | `kbb_traits.csv` | Season-level BB%, K% and K-BB% per hitter and batting side, built by `data code/build_kbb_traits.py` from the PA files (read by `production_tests.R`) |
 | `trait_reliability.py` -> `trait_reliability.csv` | Odd/even PA split-half reliability (Spearman-Brown) of each trait |
-| `reducedformregs2.do`, `reducedformregs2.R` | Stata specification from the project's advisor (2025-only, run-value models 1-9) and its R translation; output in `reducedformregs2_output.txt` |
-| `regressions.do`, `regressions.R` | Second Stata specification from the advisor and its R translation; output in `regressions_output.txt` |
+| `reducedformregs2.do`, `reducedformregs2.R` | Stata specification from the project's advisor (2025-only, run-value models 1-9) and its R translation (output files are not tracked) |
+| `regressions.do`, `regressions.R` | Second Stata specification from the advisor and its R translation (output files are not tracked) |
 
 The two `.do` files run on the 2025 pair file (`conditional_lineup_stats_2025.csv`, `conditional_stats_with_baselines.csv`). Both are built with the current pairing rule and minimum of 30 PAs per pair. The advisor's original results were computed on an earlier version of that file that used a different pairing rule, so the numbers here do not match his.
 
