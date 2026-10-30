@@ -49,8 +49,10 @@ def load_team_csvs(team_dir: Path) -> pd.DataFrame:
 
 
 def build_season(year: int, team_dir: Path, cache_dir: Path,
-                 start: str, end: str) -> None:
-    print(f"[{year}] loading team CSVs from {team_dir} ...")
+                 start: str, end: str, tag: str | None = None,
+                 min_pairs: int = 30) -> None:
+    tag = tag or str(year)   # file label; lets e.g. "2023full" coexist with "2023"
+    print(f"[{tag}] loading team CSVs from {team_dir} ...")
     df = load_team_csvs(team_dir)
     print(f"[{year}] {len(df):,} PAs loaded.")
 
@@ -59,17 +61,17 @@ def build_season(year: int, team_dir: Path, cache_dir: Path,
     baselines = add_comprehensive_statcast_metrics(
         baselines, start=start, end=end, cache_dir=str(cache_dir), progress_every=100
     )
-    base_path = REPO_ROOT / f"hitter_baselines_comprehensive_{year}.parquet"
+    base_path = REPO_ROOT / f"hitter_baselines_comprehensive_{tag}.parquet"
     baselines.to_parquet(base_path, index=False)
     print(f"[{year}] saved {base_path.name} ({len(baselines)} hitters)")
 
     print(f"[{year}] computing conditional lineup stats ...")
     all_conditional = calculate_all_conditional_stats(
-        df, baselines, min_conditional_pas=30, pitch_cache_dir=str(cache_dir),
+        df, baselines, min_conditional_pas=min_pairs, pitch_cache_dir=str(cache_dir),
         start_date=start, end_date=end, include_bat_tracking=True,
     )
     all_conditional["season"] = year
-    cond_path = REPO_ROOT / f"conditional_lineup_stats_comprehensive_{year}.parquet"
+    cond_path = REPO_ROOT / f"conditional_lineup_stats_comprehensive_{tag}.parquet"
     all_conditional.to_parquet(cond_path, index=False)
     print(f"[{year}] saved {cond_path.name} ({len(all_conditional)} pairs)")
 
@@ -81,6 +83,10 @@ def main() -> None:
     p.add_argument("--cache-dir", default=None)
     p.add_argument("--start", default=None)
     p.add_argument("--end", default=None)
+    p.add_argument("--tag", default=None,
+                   help='Output file label (default: the year), e.g. "2023full"')
+    p.add_argument("--min-pairs", type=int, default=30,
+                   help="Minimum PAs a (focal, predecessor) pair needs to be kept (>=). Default 30; use 1 to keep every pair.")
     args = p.parse_args()
 
     d = SEASON_DEFAULTS.get(args.year, {})
@@ -89,7 +95,7 @@ def main() -> None:
     start = args.start or d.get("start", f"{args.year}-03-15")
     end = args.end or d.get("end", f"{args.year}-10-05")
 
-    build_season(args.year, team_dir, cache_dir, start, end)
+    build_season(args.year, team_dir, cache_dir, start, end, args.tag, args.min_pairs)
 
 
 if __name__ == "__main__":
