@@ -4,6 +4,8 @@ library(readr)
 library(dplyr)
 library(fixest)
 
+# Note: reducedformregs2.do imports conditional_lineup_stats_2025.csv; this reads
+# conditional_stats_with_baselines.csv, which has the same columns plus the nitro and baseline ones.
 df <- read_csv("../conditional_stats_with_baselines.csv", show_col_types = FALSE)
 names(df) <- tolower(names(df))
 
@@ -35,6 +37,8 @@ df <- df %>%
     z_focal_pu    = zscore(focal_season_popup_pct),
     z_focal_chase = zscore(focal_season_chase_pct),
     z_focal_swstr = zscore(focal_season_swstr_pct),
+    # NOT in reducedformregs2.do: from here through z_abs_contact_gap below, these variables
+    # are only used by the added regressions [10] onward.
     z_focal_swing = zscore(focal_season_swing_pct),
 
     z_nitro_dist  = zscore(nitro_dist),
@@ -81,6 +85,13 @@ df_hi <- df %>% filter(num_pas > 50)
 fe_reg("[9] Combined model, num_pas > 50",
        "z_cond_ss * z_focal_aa + z_cond_ld * z_focal_tilt + z_cond_chase * z_focal_ad + z_cond_swstr * z_focal_ad",
        data = df_hi)
+
+# =============================================================================
+# DEVIATION FROM reducedformregs2.do STARTS HERE.
+# Everything above, through [9], is the translation of the advisor's reducedformregs2.do
+# (its nine regressions). All regressions below, [10] onward, were added afterwards and
+# are NOT in reducedformregs2.do.
+# =============================================================================
 
 # -----------------------------------------------------------------------------
 # New ideas (2026-08-24): uses conditional_stats_with_baselines.csv, which adds

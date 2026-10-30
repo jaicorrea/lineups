@@ -1,13 +1,11 @@
 # R translation of regressions.do
-# Note: conditional_stats_with_baselines.csv was never generated on disk
-# (it's the output of `data code/tablesort_scratch.py`). Its columns are a
-# superset of conditional_lineup_stats_2025.csv, so that file is used here.
+# Reads conditional_stats_with_baselines.csv (superset of conditional_lineup_stats_2025.csv).
 
 library(readr)
 library(dplyr)
 library(fixest)
 
-df <- read_csv("../conditional_lineup_stats_2025.csv", show_col_types = FALSE)
+df <- read_csv("../conditional_stats_with_baselines.csv", show_col_types = FALSE)
 names(df) <- tolower(names(df))  # Stata's `import delimited` lowercases names
 
 df <- df %>%
@@ -42,6 +40,8 @@ df <- df %>%
     opp_side        = ifelse(!is.na(same_side), 1 - same_side, NA),
     swing_gap       = focal_season_swing_pct - conditional_season_swing_pct,
     contact_gap     = focal_season_contact_pct - conditional_season_contact_pct,
+    # NOT in regressions.do: chase_gap, swstr_gap and their abs / z-scored versions below, plus
+    # the signed z_contact_gap. These were added later for the Tier A checks (from [A2] on).
     chase_gap       = focal_season_chase_pct - conditional_season_chase_pct,
     swstr_gap       = focal_season_swstr_pct - conditional_season_swstr_pct,
     abs_swing_gap   = abs(swing_gap),
@@ -128,6 +128,12 @@ fe_reg("[6b] Approach contrast (contact gap): z_abs_contact_gap * z_focal_slg", 
 df_hi <- df %>% filter(num_pas > 50)
 fe_reg("[7a] z_cond_obp * z_focal_slg, num_pas>50", "z_cond_obp * z_focal_slg", data = df_hi)
 fe_reg("[7b] z_cond_take * z_focal_slg, num_pas>50", "z_cond_take * z_focal_slg", data = df_hi)
+# =============================================================================
+# DEVIATION FROM regressions.do STARTS HERE.
+# Everything above, through [7b], is the translation of the advisor's regressions.do
+# (models 1-7 and battery items 0-7). The regressions below were added afterwards and are
+# NOT in regressions.do: [7c], the 40/75 PA-cutoff sweep, Tier A and Tier B.
+# =============================================================================
 fe_reg("[7c] z_abs_contact_gap * z_focal_slg, num_pas>50", "z_abs_contact_gap * z_focal_slg", data = df_hi)
 
 # PA-cutoff robustness sweep for tier 2/3 findings
