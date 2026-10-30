@@ -18,7 +18,7 @@ out = []
 for season, folder in SEASON_DIRS.items():
     df = pd.concat([pd.read_csv(f, usecols=["game_date", "batter", "stand", "events"])
                     for f in sorted((REPO_ROOT / folder).glob("*.csv"))], ignore_index=True)
-    df = df[df["events"].notna()]
+    df = df[df["events"].notna() & (df["events"] != "truncated_pa")]   # truncated PAs dropped in every season
     df["K"] = df["events"].isin(K).astype(int)
     df["BB"] = df["events"].isin(BB).astype(int)
     g = df.groupby(["batter", "stand"]).agg(PA=("K", "size"), K=("K", "sum"), BB=("BB", "sum")).reset_index()
