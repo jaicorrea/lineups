@@ -45,7 +45,10 @@ def load_team_csvs(team_dir: Path) -> pd.DataFrame:
         frames.append(d)
     if not frames:
         raise FileNotFoundError(f"No CSVs found in {team_dir}")
-    return pd.concat(frames, ignore_index=True)
+    df = pd.concat(frames, ignore_index=True)
+    # 'truncated_pa' rows (a PA cut short by an inning-ending baserunning out, or a walk-off mid-at-bat) are dropped
+    # in every season: the batter leads off the next inning, so keeping the row makes him his own predecessor.
+    return df[df["events"] != "truncated_pa"].reset_index(drop=True)
 
 
 def build_season(year: int, team_dir: Path, cache_dir: Path,
