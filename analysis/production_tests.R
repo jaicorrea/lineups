@@ -13,7 +13,7 @@ library(readr); library(dplyr); library(fixest)
 fixest::setFixest_nthreads(1)
 
 args <- commandArgs(trailingOnly = TRUE)
-path <- if (length(args) >= 1) args[1] else "../conditional_stats_with_baselines_pooled_all_team.csv"
+path <- if (length(args) >= 1) args[1] else "../data/pooled/conditional_stats_with_baselines_pooled_all_team.csv"
 df <- read_csv(path, show_col_types = FALSE)
 names(df) <- tolower(names(df))
 z <- function(x) as.numeric(scale(x))

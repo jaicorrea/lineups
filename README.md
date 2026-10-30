@@ -16,9 +16,9 @@ Run in this order for each season (see each script's docstring / `--help` for op
 | Step | Script | What it does |
 |---|---|---|
 | 1 | `pull_season.py` | Pulls a regular season from Baseball Savant (pybaseball) and writes per-team PA CSVs plus a per-batter pitch-level cache |
-| 2 | `build_season.py` | Builds season baselines (`avghitter.py`, `swing_and_battracking_metrics.py`) and every predecessor/focal pair (`lineup_context.py`); writes `conditional_lineup_stats_comprehensive_{tag}.parquet` and `hitter_baselines_comprehensive_{tag}.parquet` |
-| 3 | `pool_seasons.py` | Stacks the seasons into `conditional_stats_with_baselines_pooled_all.csv` |
-| 4 | `attach_team.py` | Adds each pair's `team` and a cross-team flag -> `conditional_stats_with_baselines_pooled_all_team.csv` |
+| 2 | `build_season.py` | Builds season baselines (`avghitter.py`, `swing_and_battracking_metrics.py`) and every predecessor/focal pair (`lineup_context.py`); writes `data/pairs/conditional_lineup_stats_comprehensive_{tag}.parquet` and `data/baselines/hitter_baselines_comprehensive_{tag}.parquet` |
+| 3 | `pool_seasons.py` | Stacks the seasons into `data/pooled/conditional_stats_with_baselines_pooled_all.csv` |
+| 4 | `attach_team.py` | Adds each pair's `team` and a cross-team flag -> `data/pooled/conditional_stats_with_baselines_pooled_all_team.csv` |
 | 5 | `build_kbb_traits.py` | Computes season BB%, K% and K-BB% per hitter and side from the PA files -> `analysis/kbb_traits.csv` (needed only for `production_tests.R`) |
 
 The analysis data were built with `build_season.py <year> --tag <year>_all --min-pairs 1` (every pair kept, no minimum PAs per pair), then `pool_seasons.py 2023_all 2024_all 2025_all 2026_all --out conditional_stats_with_baselines_pooled_all.csv`. 2023 was pulled for 2023-07-14 to 2023-10-01.
@@ -40,8 +40,10 @@ Earlier-iteration (2025-only) scripts still in this folder and not used for the 
 The two `.do` files run on the 2025 pair file (`conditional_lineup_stats_2025.csv`, `conditional_stats_with_baselines.csv`). Both are built with the current pairing rule and minimum of 30 PAs per pair. The advisor's original results were computed on an earlier version of that file that used a different pairing rule, so the numbers here do not match his.
 
 ### Data files (root)
-- `conditional_stats_with_baselines_pooled_all_team.csv` — analysis dataset: one row per (season, focal hitter, predecessor) pair, with both hitters' season baselines and the focal hitter's outcomes in those pairs.
-- `conditional_lineup_stats_comprehensive_{2023..2026}_all.parquet`, `hitter_baselines_comprehensive_{2023..2026}_all.parquet` — per-season outputs of step 2.
+- `data/pooled/conditional_stats_with_baselines_pooled_all_team.csv` — analysis dataset: one row per (season, focal hitter, predecessor) pair, with both hitters' season baselines and the focal hitter's outcomes in those pairs.
+- `data/pairs/conditional_lineup_stats_comprehensive_{2023..2026}_all.parquet` and `data/baselines/hitter_baselines_comprehensive_{2023..2026}_all.parquet` — per-season outputs of step 2.
+- `data/pooled/conditional_stats_with_baselines_pooled_all.csv` — step 3 output, before the team columns are attached.
+- `data/team_lookup.csv` — each hitter's team per season (`build_team_lookup.py`).
 - `conditional_lineup_stats_2025.csv`, `conditional_stats_with_baselines.csv` — 2025-only pair data used by the `.do` files.
 
 ## Getting the raw data

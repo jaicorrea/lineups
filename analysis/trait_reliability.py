@@ -8,7 +8,7 @@ SW = {"swinging_strike","swinging_strike_blocked","foul","foul_tip","hit_into_pl
 CT = {"foul","hit_into_play","hit_into_play_no_out","hit_into_play_score","foul_bunt"}
 SS = {"swinging_strike","swinging_strike_blocked","foul_tip","missed_bunt"}
 BB = {"hit_into_play","hit_into_play_no_out","hit_into_play_score"}
-pairs = pd.read_csv("conditional_stats_with_baselines_pooled_all_team.csv", usecols=["season","focal_batter_id","focal_season_PA","conditional_batter_id","conditional_season_PA"])
+pairs = pd.read_csv("data/pooled/conditional_stats_with_baselines_pooled_all_team.csv", usecols=["season","focal_batter_id","focal_season_PA","conditional_batter_id","conditional_season_PA"])
 hs = pd.concat([pairs[["season","focal_batter_id","focal_season_PA"]].set_axis(["season","batter","pa"], axis=1),
                 pairs[["season","conditional_batter_id","conditional_season_PA"]].set_axis(["season","batter","pa"], axis=1)]).drop_duplicates(["season","batter"])
 hs = hs[hs.pa >= 50]

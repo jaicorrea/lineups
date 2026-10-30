@@ -37,9 +37,7 @@ def load_season(tag) -> pd.DataFrame:
     column is always the leading 4-digit year."""
     tag = str(tag)
     year = int(tag[:4])
-    path = REPO_ROOT / "data code" / f"conditional_lineup_stats_comprehensive_{tag}.parquet"
-    if not path.exists():
-        path = REPO_ROOT / f"conditional_lineup_stats_comprehensive_{tag}.parquet"
+    path = REPO_ROOT / "data" / "pairs" / f"conditional_lineup_stats_comprehensive_{tag}.parquet"
     df = pd.read_parquet(path)
     df["season"] = year
     return df
@@ -70,7 +68,8 @@ def pool_seasons(years: list, out_name: str) -> None:
     other_cols = [c for c in out.columns if not c.startswith("focal_") and not c.startswith("conditional_")]
     out = out[other_cols + focal_cols + conditional_cols]
 
-    out_path = REPO_ROOT / out_name
+    out_path = REPO_ROOT / "data" / "pooled" / out_name
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(out_path, index=False)
     print(f"Wrote {len(out):,} rows x {len(out.columns)} cols -> {out_path.name}")
     print(f"nitro_dist non-null: {out['nitro_dist'].notna().sum()} / {len(out)}")

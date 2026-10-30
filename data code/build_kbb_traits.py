@@ -32,7 +32,7 @@ res = pd.concat(out, ignore_index=True)
 # sanity check against the baselines' PA counts
 chk = []
 for season in SEASON_DIRS:
-    b = pd.read_parquet(REPO_ROOT / f"hitter_baselines_comprehensive_{season}_all.parquet", columns=["batter", "HitterSide", "PA"])
+    b = pd.read_parquet(REPO_ROOT / "data" / "baselines" / f"hitter_baselines_comprehensive_{season}_all.parquet", columns=["batter", "HitterSide", "PA"])
     m = b.merge(res[res.season == season], left_on=["batter", "HitterSide"], right_on=["batter", "stand"], how="left", suffixes=("_base", "_raw"))
     print(season, "baseline rows", len(b), "| unmatched", m["PA_raw"].isna().sum(), "| PA mismatch", int((m["PA_base"] != m["PA_raw"]).sum()))
 res.to_csv(REPO_ROOT / "analysis" / "kbb_traits.csv", index=False)

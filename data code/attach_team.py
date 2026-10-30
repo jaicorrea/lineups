@@ -32,9 +32,9 @@ for yr, dn in dirs.items():
     out["season"] = yr
     frames.append(out.drop(columns="nteams"))
 tm = pd.concat(frames, ignore_index=True)
-pooled = pd.read_csv(R / "conditional_stats_with_baselines_pooled_all.csv", low_memory=False)
+pooled = pd.read_csv(R / "data" / "pooled" / "conditional_stats_with_baselines_pooled_all.csv", low_memory=False)
 n0 = len(pooled)
 merged = pooled.merge(tm, on=keys, how="left", validate="one_to_one")
 assert len(merged) == n0
 print("pooled rows", n0, "| rows without a team:", int(merged.team.isna().sum()), "| cross-team pairs:", int(merged.team_cross_team_pair.sum()))
-merged.to_csv(R / "conditional_stats_with_baselines_pooled_all_team.csv", index=False)
+merged.to_csv(R / "data" / "pooled" / "conditional_stats_with_baselines_pooled_all_team.csv", index=False)

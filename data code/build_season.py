@@ -10,8 +10,8 @@ Usage:
         --cache-dir statcast_pitch_cache_2025 --start 2025-03-18 --end 2025-09-28
 
 Outputs (in the repo root):
-    hitter_baselines_comprehensive_{year}.parquet
-    conditional_lineup_stats_comprehensive_{year}.parquet
+    data/baselines/hitter_baselines_comprehensive_{year}.parquet
+    data/pairs/conditional_lineup_stats_comprehensive_{year}.parquet
 
 The pitch cache must already exist for the season (build it with pull_season.py).
 start/end must match the pitch-cache filenames `{bid}_{start}_{end}.parquet`.
@@ -61,7 +61,8 @@ def build_season(year: int, team_dir: Path, cache_dir: Path,
     baselines = add_comprehensive_statcast_metrics(
         baselines, start=start, end=end, cache_dir=str(cache_dir), progress_every=100
     )
-    base_path = REPO_ROOT / f"hitter_baselines_comprehensive_{tag}.parquet"
+    base_path = REPO_ROOT / "data" / "baselines" / f"hitter_baselines_comprehensive_{tag}.parquet"
+    base_path.parent.mkdir(parents=True, exist_ok=True)
     baselines.to_parquet(base_path, index=False)
     print(f"[{year}] saved {base_path.name} ({len(baselines)} hitters)")
 
@@ -71,7 +72,8 @@ def build_season(year: int, team_dir: Path, cache_dir: Path,
         start_date=start, end_date=end, include_bat_tracking=True,
     )
     all_conditional["season"] = year
-    cond_path = REPO_ROOT / f"conditional_lineup_stats_comprehensive_{tag}.parquet"
+    cond_path = REPO_ROOT / "data" / "pairs" / f"conditional_lineup_stats_comprehensive_{tag}.parquet"
+    cond_path.parent.mkdir(parents=True, exist_ok=True)
     all_conditional.to_parquet(cond_path, index=False)
     print(f"[{year}] saved {cond_path.name} ({len(all_conditional)} pairs)")
 

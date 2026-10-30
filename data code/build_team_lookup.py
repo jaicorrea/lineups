@@ -1,6 +1,6 @@
 """Build hitter x season x team lookup from the per-team pitch CSVs.
 
-Output: team_lookup.csv with columns season, batter, team, pas (distinct PAs for that
+Output: data/team_lookup.csv with columns season, batter, team, pas (distinct PAs for that
 batter with that team's CSV). Also checks that each file's batting team (derived from
 inning_topbot/home_team/away_team) matches its filename.
 """
@@ -26,7 +26,7 @@ for yr, dn in DIRS.items():
         g["season"], g["team"] = yr, file_team
         rows.append(g)
 out = pd.concat(rows, ignore_index=True)
-out.to_csv(ROOT / "team_lookup.csv", index=False)
+out.to_csv(ROOT / "data" / "team_lookup.csv", index=False)
 m = pd.DataFrame(mism, columns=["season", "file_team", "share_batting_team_differs", "modal_batting_team"])
 print(m[m.share_batting_team_differs > 0.01].to_string(index=False) or "all files: batting team == filename")
 print(out.groupby("season").agg(files=("team", "nunique"), hitters=("batter", "nunique"), rows=("batter", "size")))
