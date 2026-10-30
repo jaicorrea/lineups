@@ -2,3 +2,9 @@ __pycache__/
 *.pyc
 *.pyo
 .DS_Store
+
+# raw data (regenerate with data code/pull_season.py; see README)
+statcast hitters/
+statcast hitters */
+statcast_pitch_cache_*/
+*.log
