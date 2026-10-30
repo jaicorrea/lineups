@@ -32,17 +32,20 @@ def _nitro_component(value, index):
     return pd.NA if component is None else float(component)
 
 
-def load_season(year: int) -> pd.DataFrame:
-    path = REPO_ROOT / "data code" / f"conditional_lineup_stats_comprehensive_{year}.parquet"
+def load_season(tag) -> pd.DataFrame:
+    """tag is a year ("2024") or a year plus a label ("2023full"); the season
+    column is always the leading 4-digit year."""
+    tag = str(tag)
+    year = int(tag[:4])
+    path = REPO_ROOT / "data code" / f"conditional_lineup_stats_comprehensive_{tag}.parquet"
     if not path.exists():
-        path = REPO_ROOT / f"conditional_lineup_stats_comprehensive_{year}.parquet"
+        path = REPO_ROOT / f"conditional_lineup_stats_comprehensive_{tag}.parquet"
     df = pd.read_parquet(path)
-    if "season" not in df.columns:
-        df["season"] = year
+    df["season"] = year
     return df
 
 
-def pool_seasons(years: list[int], out_name: str) -> None:
+def pool_seasons(years: list, out_name: str) -> None:
     frames = [load_season(y) for y in years]
     for y, f in zip(years, frames):
         print(f"  {y}: {len(f):,} pairs, {len(f.columns)} cols")
@@ -76,7 +79,7 @@ def pool_seasons(years: list[int], out_name: str) -> None:
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("years", type=int, nargs="+")
+    p.add_argument("years", nargs="+", help='seasons or tags, e.g. 2023full 2024 2025')
     p.add_argument("--out", default="conditional_stats_with_baselines_pooled.csv")
     args = p.parse_args()
     pool_seasons(args.years, args.out)
