@@ -9,7 +9,8 @@ frames = []
 for yr, dn in dirs.items():
     parts = []
     for f in sorted((R / dn).glob("*.csv")):
-        d = pd.read_csv(f, usecols=["batter", "stand", "game_pk", "at_bat_number", "inning_topbot", "home_team", "away_team"])
+        d = pd.read_csv(f, usecols=["batter", "stand", "game_pk", "at_bat_number", "inning_topbot", "home_team", "away_team", "events"])
+        d = d[d["events"] != "truncated_pa"]   # dropped in every season (would make a batter his own predecessor)
         d["file_team"] = f.stem.upper()
         parts.append(d)
     df = pd.concat(parts, ignore_index=True)
