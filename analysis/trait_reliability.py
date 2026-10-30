@@ -27,7 +27,7 @@ for yr, dr in dirs.items():
     for k, v in {"gb":"ground_ball","fb":"fly_ball","ld":"line_drive","pu":"popup"}.items(): d[k] = d.bbe & (d.bb_type == v)
     for c in ["attack_angle","attack_direction","swing_path_tilt"]: d["sw_"+c] = d[c].where(d.sw)
     # PA-level rows (final pitch of each PA)
-    ev = d[d.events.notna()].drop_duplicates("pa", keep="last").copy()
+    ev = d[d.events.notna() & (d.events != "truncated_pa")].drop_duplicates("pa", keep="last").copy()   # truncated PAs dropped in every season
     tb = {"single":1,"double":2,"triple":3,"home_run":4}
     ev["TB"] = ev.events.map(tb).fillna(0); ev["H"] = (ev.TB > 0).astype(int)
     ev["BBn"] = ev.events.isin(["walk","intent_walk"]).astype(int); ev["HBP"] = (ev.events == "hit_by_pitch").astype(int)
