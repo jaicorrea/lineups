@@ -3,7 +3,7 @@ import pandas as pd
 from pathlib import Path
 
 R = Path(__file__).resolve().parent.parent  # repo root
-dirs = {2023: "statcast hitters 2023", 2024: "statcast hitters 2024", 2025: "statcast hitters 2025", 2026: "statcast hitters 2026"}
+dirs = {2025: "statcast hitters 2025", 2026: "statcast hitters 2026"}
 keys = ["season", "focal_batter_id", "focal_HitterSide", "conditional_batter_id", "conditional_HitterSide"]
 frames = []
 for yr, dn in dirs.items():

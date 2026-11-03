@@ -8,8 +8,7 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
-DIRS = {2023: "statcast hitters 2023", 2024: "statcast hitters 2024",
-        2025: "statcast hitters 2025", 2026: "statcast hitters 2026"}
+DIRS = {2025: "statcast hitters 2025", 2026: "statcast hitters 2026"}
 COLS = ["batter", "game_pk", "at_bat_number", "game_type", "home_team", "away_team", "inning_topbot", "events"]
 
 rows, mism = [], []

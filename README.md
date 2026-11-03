@@ -2,7 +2,7 @@
 
 Do hitters perform differently depending on the style of the hitter who bats just before them? This repo tests lineup complementarities in MLB: whether the *type* of hitter ahead of a batter (swing, bat-tracking and batted-ball traits) changes that batter's Barrel/PA or run value per PA.
 
-Sample: regular-season plate appearances from mid-2023 (2023-07-14, when Statcast bat tracking began) through the end of the 2026 regular season.
+Sample: regular-season plate appearances for the 2025 and 2026 seasons (2026 is complete through 2026-09-27).
 
 ## Design in one paragraph
 
@@ -21,11 +21,11 @@ Run in this order for each season (see each script's docstring / `--help` for op
 | 4 | `attach_team.py` | Adds each pair's `team` and a cross-team flag -> `data/pooled/conditional_stats_with_baselines_pooled_all_team.csv` |
 | 5 | `build_kbb_traits.py` | Computes season BB%, K% and K-BB% per hitter and side from the PA files -> `analysis/kbb_traits.csv` (needed only for `production_tests.R`) |
 
-The analysis data were built with `build_season.py <year> --tag <year>_all --min-pairs 1` (every pair kept, no minimum PAs per pair), then `pool_seasons.py 2023_all 2024_all 2025_all 2026_all --out conditional_stats_with_baselines_pooled_all.csv`. 2023 was pulled for 2023-07-14 to 2023-10-01.
+The analysis data were built with `build_season.py <year> --tag <year>_all --min-pairs 1` (every pair kept, no minimum PAs per pair), then `pool_seasons.py 2025_all 2026_all --out conditional_stats_with_baselines_pooled_all.csv`.
 
 Pairing rule (`lineup_context.py`): the predecessor is the previous batter *on the same team in the same game*, so the first batter of an inning is paired with his own team's last batter from the previous inning. Barrel is Statcast's own classification (`launch_speed_angle == 6`). Swing and bat-tracking metrics use regular-season pitches only.
 
-**Truncated PAs are disregarded in every season.** Statcast's `events == 'truncated_pa'` rows (a plate appearance cut short, almost always by a third-out baserunning play such as a caught stealing, and in two 2025 cases a walk-off mid-at-bat) are dropped before any pairing, baseline, team or K/BB calculation (`build_season.py`, `attach_team.py`, `build_team_lookup.py`, `build_kbb_traits.py`, `trait_reliability.py`). They are dropped so that no hitter is his own predecessor: the batter leads off the next inning, so keeping the row paired him with himself (78, 221 and 213 self-pairs in 2023, 2024 and 2026 before the filter). The original hand-downloaded 2025 files never contained these rows, but the pulled seasons do (107, 316, 319 and 329 in 2023, 2024, 2025 and 2026 respectively; 2025 is counted from the pull), so the filter is applied to all four seasons to keep them consistent. The 2023, 2024 and 2026 raw PA files are left as Savant delivered them; the 2025 PA files were filtered when they were set up (see below). In every season the pitches from truncated PAs still count toward the season swing and bat-tracking baselines (the pitch caches are not filtered).
+**Truncated PAs are disregarded in every season.** Statcast's `events == 'truncated_pa'` rows (a plate appearance cut short, almost always by a third-out baserunning play such as a caught stealing, and in two 2025 cases a walk-off mid-at-bat) are dropped before any pairing, baseline, team or K/BB calculation (`build_season.py`, `attach_team.py`, `build_team_lookup.py`, `build_kbb_traits.py`, `trait_reliability.py`). They are dropped so that no hitter is his own predecessor: the batter leads off the next inning, so keeping the row paired him with himself (213 self-pairs in 2026 before the filter). The original hand-downloaded 2025 files never contained these rows, but the pulled seasons do (319 in 2025 and 329 in 2026), so the filter is applied to both seasons to keep them consistent. The 2026 raw PA files are left as Savant delivered them; the 2025 PA files were filtered when they were set up (see below). In every season the pitches from truncated PAs still count toward the season swing and bat-tracking baselines (the pitch caches are not filtered).
 
 Earlier-iteration (2025-only) scripts still in this folder and not used for the current results: `statcast_research.py`, `run_analysis.py`, `lineup_extract.py`, `research_scratch.py`, `tablesort_scratch.py`, `swing_pct_statcast.py`.
 
@@ -43,7 +43,7 @@ The two `.do` files run on the 2025 pair file (`conditional_lineup_stats_2025.cs
 
 ### Data files (root)
 - `data/pooled/conditional_stats_with_baselines_pooled_all_team.csv` — analysis dataset: one row per (season, focal hitter, predecessor) pair, with both hitters' season baselines and the focal hitter's outcomes in those pairs.
-- `data/pairs/conditional_lineup_stats_comprehensive_{2023..2026}_all.parquet` and `data/baselines/hitter_baselines_comprehensive_{2023..2026}_all.parquet` — per-season outputs of step 2.
+- `data/pairs/conditional_lineup_stats_comprehensive_{2025,2026}_all.parquet` and `data/baselines/hitter_baselines_comprehensive_{2025,2026}_all.parquet` — per-season outputs of step 2.
 - `data/pooled/conditional_stats_with_baselines_pooled_all.csv` — step 3 output, before the team columns are attached.
 - `data/team_lookup.csv` — each hitter's team per season (`build_team_lookup.py`).
 - `conditional_lineup_stats_2025.csv`, `conditional_stats_with_baselines.csv` — 2025-only pair data used by the `.do` files.
@@ -54,13 +54,11 @@ The raw data are not in the repo (about 1 GB). Regenerate them with pybaseball (
 
 ```
 cd "data code"
-python pull_season.py 2023 --start 2023-07-14 --end 2023-10-01
-python pull_season.py 2024
 python pull_season.py 2025
 python pull_season.py 2026
 ```
 
-By default this writes the per-team PA CSVs to `statcast hitters {year}/` and the per-batter pitch-level parquets to `statcast_pitch_cache_{year}/` at the repo root. All four seasons, 2025 included, are pulled this way. 2025 was originally downloaded by hand from Baseball Savant; that download is kept as `statcast hitters 2025 manual/`, and `pull_season.py` reads it as the column-schema reference. Compared with that download the 2025 pull has the same 118 columns and the same PAs, plus 319 truncated PAs and 34 other PAs (25 intentional walks, 8 catcher-interference PAs, 1 strikeout) that the manual download lacked. `statcast hitters 2025/` has all of those removed, so it holds exactly the 182,892 PAs of the manual download, with values from the pull. Savant's later revisions leave small differences in some fields (for example `plate_x`/`plate_z` by about 0.0025 and `woba_denom`, blank on 531 intentional walks where the manual files had 0). The pull is re-run with `python pull_season.py 2025`, then those PAs are removed, to reproduce the folder. Then build and pool as described above (`build_season.py` takes `--team-dir` and `--cache-dir` if your folders are named differently).
+By default this writes the per-team PA CSVs to `statcast hitters {year}/` and the per-batter pitch-level parquets to `statcast_pitch_cache_{year}/` at the repo root. Both seasons are pulled this way. 2025 was originally downloaded by hand from Baseball Savant; that download is kept as `statcast hitters 2025 manual/`, and `pull_season.py` reads it as the column-schema reference. Compared with that download the 2025 pull has the same 118 columns and the same PAs, plus 319 truncated PAs and 34 other PAs (25 intentional walks, 8 catcher-interference PAs, 1 strikeout) that the manual download lacked. `statcast hitters 2025/` has all of those removed, so it holds exactly the 182,892 PAs of the manual download, with values from the pull. Savant's later revisions leave small differences in some fields (for example `plate_x`/`plate_z` by about 0.0025 and `woba_denom`, blank on 531 intentional walks where the manual files had 0). The pull is re-run with `python pull_season.py 2025`, then those PAs are removed, to reproduce the folder. Then build and pool as described above (`build_season.py` takes `--team-dir` and `--cache-dir` if your folders are named differently).
 
 These folders are listed in `.gitignore`. Note that a fresh Savant pull can differ slightly from the files used here if Savant has revised data since.
 

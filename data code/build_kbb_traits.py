@@ -9,8 +9,7 @@ from pathlib import Path
 import pandas as pd
 
 REPO_ROOT = Path(__file__).parent.parent
-SEASON_DIRS = {2023: "statcast hitters 2023", 2024: "statcast hitters 2024",
-               2025: "statcast hitters 2025", 2026: "statcast hitters 2026"}
+SEASON_DIRS = {2025: "statcast hitters 2025", 2026: "statcast hitters 2026"}
 K = {"strikeout", "strikeout_double_play"}
 BB = {"walk", "intent_walk"}
 
