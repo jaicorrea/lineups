@@ -6,7 +6,7 @@ Sample: regular-season plate appearances for the 2025 and 2026 seasons (2026 is 
 
 ## Design in one paragraph
 
-Each observation is a (focal hitter, predecessor) pair within a season. Traits are season-long hitter averages, z-scored within season. Each test regresses the focal hitter's outcome in those pairs on `predecessor trait x focal trait` with focal-hitter-by-season and predecessor-by-season fixed effects (so only which pairings formed within a season identifies the interaction), weighted by the number of PAs in the pair and clustered on the focal hitter (team-season and two-way clustering are also reported). Outcomes: Barrel/PA (primary) and run value per PA (secondary). Eleven pre-specified interactions are tested with a Holm correction. The same eleven are also run in the reverse direction, with the predecessor's own run value per PA (in the PAs where the focal hitter batted behind him) as the outcome. Five post hoc production-trait interactions (OBP, SLG, BA, Barrel/PA, BB%, K%, K-BB%) are run on all three outcomes.
+Each observation is a (focal hitter, predecessor) pair within a season. Traits are season-long hitter averages, z-scored within season. Each test regresses the focal hitter's outcome in those pairs on `predecessor trait x focal trait` with focal-hitter-by-season and predecessor-by-season fixed effects (so only which pairings formed within a season identifies the interaction), weighted by the number of PAs in the pair and clustered on the focal hitter (team-season and two-way clustering are also reported). Outcomes: Barrel/PA (primary) and run value per PA (secondary). Eleven pre-specified interactions are tested with a Holm correction. The same eleven are also run in the reverse direction, with the predecessor's own run value per PA (in the PAs where the focal hitter batted behind him) as the outcome.
 
 ## Repository structure
 
@@ -19,7 +19,7 @@ Run in this order for each season (see each script's docstring / `--help` for op
 | 2 | `build_season.py` | Builds season baselines (`avghitter.py`, `swing_and_battracking_metrics.py`) and every predecessor/focal pair (`lineup_context.py`); writes `data/pairs/conditional_lineup_stats_comprehensive_{tag}.parquet` and `data/baselines/hitter_baselines_comprehensive_{tag}.parquet` |
 | 3 | `pool_seasons.py` | Stacks the seasons into `data/pooled/conditional_stats_with_baselines_pooled_all.csv` |
 | 4 | `attach_team.py` | Adds each pair's `team` and a cross-team flag -> `data/pooled/conditional_stats_with_baselines_pooled_all_team.csv` |
-| 5 | `build_kbb_traits.py` | Computes season BB%, K% and K-BB% per hitter and side from the PA files -> `analysis/kbb_traits.csv` (needed only for `production_tests.R`) |
+| 5 | `build_kbb_traits.py` | Computes season BB%, K% and K-BB% per hitter and side from the PA files -> `analysis/kbb_traits.csv` (not used by the current analyses) |
 
 The analysis data were built with `build_season.py <year> --tag <year>_all --min-pairs 1` (every pair kept, no minimum PAs per pair), then `pool_seasons.py 2025_all 2026_all --out conditional_stats_with_baselines_pooled_all.csv`.
 
@@ -35,8 +35,7 @@ Earlier-iteration (2025-only) scripts still in this folder and not used for the 
 | File | Purpose |
 |---|---|
 | `all11.R` | The 11 pre-specified interactions on the pooled data; writes `all11_pooled.csv` and `all11_by_season.csv`. Run `Rscript all11.R <pooled csv> cond` for the reverse-direction version (outcome = predecessor's run value per PA), which writes `all11_cond_pooled.csv` and `all11_cond_by_season.csv` |
-| `production_tests.R` | Five post hoc production interactions (cond OBP x focal SLG, cond Barrel/PA x focal BB%, cond K% x focal BB%, cond K-BB% x focal Barrel/PA, cond OBP x focal BA) on focal Barrel/PA, focal run value and predecessor run value; writes `production_pooled.csv` and `production_by_season.csv` |
-| `kbb_traits.csv` | Season-level BB%, K% and K-BB% per hitter and batting side, built by `data code/build_kbb_traits.py` from the PA files (read by `production_tests.R`) |
+| `kbb_traits.csv` | Season-level BB%, K% and K-BB% per hitter and batting side, built by `data code/build_kbb_traits.py` from the PA files (not used by the current analyses) |
 | `trait_reliability.py` -> `trait_reliability.csv` | Odd/even PA split-half reliability (Spearman-Brown) of each trait |
 | `reducedformregs2.do`, `reducedformregs2.R` | Stata specification from the project's advisor (2025-only, run-value models 1-9) and its R translation (output files are not tracked) |
 | `regressions.do`, `regressions.R` | Second Stata specification from the advisor and its R translation (output files are not tracked) |
