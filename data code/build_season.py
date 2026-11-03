@@ -15,6 +15,10 @@ Outputs (in the repo root):
 
 The pitch cache must already exist for the season (build it with pull_season.py).
 start/end must match the pitch-cache filenames `{bid}_{start}_{end}.parquet`.
+
+`delta_run_exp` in the PA files is only the value of the pitch that ended the PA. The pipeline replaces it with
+the value summed over every pitch of the PA (from the pitch cache), so per-PA run value is the full change in
+run expectancy across the plate appearance. The terminal-pitch value is kept as `delta_run_exp_last_pitch`.
 """
 
 import argparse
@@ -42,6 +46,24 @@ def load_team_csvs(team_dir: Path) -> pd.DataFrame:
     return df[df["events"] != "truncated_pa"].reset_index(drop=True)
 
 
+def add_full_pa_delta_run_exp(df: pd.DataFrame, cache_dir: Path) -> pd.DataFrame:
+    """Replace each PA's delta_run_exp (terminal pitch only) with the sum over every pitch of the PA, from the cache."""
+    files = sorted(Path(cache_dir).glob("*.parquet"))
+    if not files:
+        raise FileNotFoundError(f"No pitch cache files in {cache_dir}")
+    pitches = pd.concat([pd.read_parquet(f, columns=["batter", "game_pk", "at_bat_number", "delta_run_exp"])
+                         for f in files], ignore_index=True)
+    full = (pitches.groupby(["game_pk", "at_bat_number", "batter"], as_index=False)["delta_run_exp"].sum()
+            .rename(columns={"delta_run_exp": "delta_run_exp_full_pa"}))
+    out = df.merge(full, on=["game_pk", "at_bat_number", "batter"], how="left", validate="many_to_one")
+    n_missing = int(out["delta_run_exp_full_pa"].isna().sum())
+    if n_missing:
+        raise ValueError(f"{n_missing} PAs have no pitches in {cache_dir}; re-pull the season with pull_season.py")
+    out["delta_run_exp_last_pitch"] = out["delta_run_exp"]
+    out["delta_run_exp"] = out.pop("delta_run_exp_full_pa")
+    return out
+
+
 def build_season(year: int, team_dir: Path, cache_dir: Path,
                  start: str, end: str, tag: str | None = None,
                  min_pairs: int = 30) -> None:
@@ -49,6 +71,8 @@ def build_season(year: int, team_dir: Path, cache_dir: Path,
     print(f"[{tag}] loading team CSVs from {team_dir} ...")
     df = load_team_csvs(team_dir)
     print(f"[{year}] {len(df):,} PAs loaded.")
+    df = add_full_pa_delta_run_exp(df, cache_dir)
+    print(f"[{year}] delta_run_exp set to the full-PA sum from {cache_dir.name}.")
 
     print(f"[{year}] building baselines + swing/bat-tracking metrics ...")
     baselines = hitter_baselines_from_pa_df(df, min_pa=50)
