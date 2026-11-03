@@ -28,15 +28,6 @@ from lineup_context import calculate_all_conditional_stats
 
 REPO_ROOT = Path(__file__).parent.parent
 
-# Per-season defaults. 2025 was manually downloaded (statcast hitters/, RS range
-# 03-18..09-28); later seasons come from pull_season.py (statcast hitters {yr}/,
-# default range 03-15..10-05).
-SEASON_DEFAULTS = {
-    2025: dict(team_dir="statcast hitters", cache_dir="statcast_pitch_cache_2025",
-               start="2025-03-18", end="2025-09-28"),
-}
-
-
 def load_team_csvs(team_dir: Path) -> pd.DataFrame:
     frames = []
     for f in sorted(team_dir.glob("*.csv")):
@@ -94,7 +85,7 @@ def main() -> None:
                    help="Minimum PAs a (focal, predecessor) pair needs to be kept (>=). Default 30; use 1 to keep every pair.")
     args = p.parse_args()
 
-    d = SEASON_DEFAULTS.get(args.year, {})
+    d = {}
     team_dir = Path(args.team_dir) if args.team_dir else REPO_ROOT / d.get("team_dir", f"statcast hitters {args.year}")
     cache_dir = Path(args.cache_dir) if args.cache_dir else REPO_ROOT / d.get("cache_dir", f"statcast_pitch_cache_{args.year}")
     start = args.start or d.get("start", f"{args.year}-03-15")

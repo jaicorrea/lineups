@@ -2,7 +2,7 @@
 """
 Pull a full regular season of PA-level Statcast data from Baseball Savant and
 write it out in the same per-team CSV format as the manually-downloaded files
-in `statcast hitters/` (which are 2025).
+in `statcast hitters 2025 manual/` (the original 2025 download, kept as the schema reference).
 
 Usage:
     python pull_season.py 2024
@@ -11,7 +11,7 @@ Usage:
     python pull_season.py 2024 --no-cache        # skip the pitch cache
 
 Produces TWO things from a single league-wide pull:
-  1. PA-level team CSVs (like the manually-downloaded `statcast hitters/` files)
+  1. PA-level team CSVs (like the original manually-downloaded 2025 files)
      -> used for BA/OBP/SLG, barrels, nitro zone, delta_run_exp.
   2. Per-batter pitch-level cache in `statcast_pitch_cache_{year}/`
      -> used by the swing / bat-tracking metrics (Swing%, Contact%, SwStr%,
@@ -49,7 +49,7 @@ TEAM_FILENAME_OVERRIDES = {
 }
 
 REPO_ROOT = Path(__file__).parent.parent
-REFERENCE_TEAM_DIR = REPO_ROOT / "statcast hitters"  # 2025, for canonical schema
+REFERENCE_TEAM_DIR = REPO_ROOT / "statcast hitters 2025 manual"  # original 2025 download, for canonical schema
 
 
 def savant_code_to_stem(code: str) -> str:
@@ -58,7 +58,7 @@ def savant_code_to_stem(code: str) -> str:
 
 def reference_columns() -> list[str] | None:
     """Column order of the existing team CSVs, so new files match exactly."""
-    sample = next(REFERENCE_TEAM_DIR.glob("*.csv"), None)
+    sample = next(REFERENCE_TEAM_DIR.glob("*.csv"), None) or next(REPO_ROOT.glob("statcast hitters */*.csv"), None)
     if sample is None:
         return None
     return pd.read_csv(sample, nrows=0).columns.tolist()
