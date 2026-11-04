@@ -6,7 +6,12 @@ Sample: regular-season plate appearances for the 2025 and 2026 seasons (2026 is 
 
 ## Design in one paragraph
 
-Each observation is a (focal hitter, predecessor) pair within a season. Traits are season-long hitter averages, z-scored within season. Each test regresses the focal hitter's outcome in those pairs on `predecessor trait x focal trait` with focal-hitter-by-season and predecessor-by-season fixed effects (so only which pairings formed within a season identifies the interaction), weighted by the number of PAs in the pair and clustered on the focal hitter (team-season and two-way clustering are also reported). Outcomes: Barrel/PA (primary) and run value per PA (secondary). Eleven pre-specified interactions are tested with a Holm correction. The same eleven are also run in the reverse direction, with the predecessor's own run value per PA (in the PAs where the focal hitter batted behind him) as the outcome.
+Each observation is a (focal hitter, predecessor) pair within a season. Traits are season-long hitter averages, z-scored within season. Each test regresses the focal hitter's outcome in those pairs on `predecessor trait x focal trait` with focal-hitter-by-season and predecessor-by-season fixed effects (so only which pairings formed within a season identifies the interaction), weighted by the number of PAs in the pair and two-way clustered on the focal and conditional hitter. Twelve pre-specified interactions (`analysis/table1_regressions.R`) are run on three outcomes: the focal hitter's run value per PA, the conditional hitter's run value per PA, and (as a proxy, since focal run value mechanically absorbs PA-level production) the focal hitter's Barrel/PA. 2025 is the main sample and 2026 the out-of-sample check.
+
+## The paper and its tables
+
+- `paper/main.tex` is the paper. Its tables are `\input` from `tables/`, one `.tex` file per table (see `tables/README.md` for which script makes which). The bibliography file `paper/sample.bib` is needed to compile.
+- `make_all.ps1` reruns the regressions and rebuilds every file in `tables/` from the committed pooled data (`data/pooled/conditional_stats_with_woba_pooled_all_team.csv`). It needs R 4.4 (`fixest`, `dplyr`, `readr`) on the PATH, or `$env:RSCRIPT` set. Building the pooled data itself from raw Statcast is the pipeline below, plus `data code/build_woba_outcomes.py` (adds pair wOBA/xwOBA).
 
 ## Repository structure
 
@@ -33,6 +38,9 @@ Earlier-iteration (2025-only) scripts still in this folder and not used for the 
 ### `analysis/` — final analysis
 | File | Purpose |
 |---|---|
+| `table1_regressions.R` | The 12 interactions on focal run value, conditional run value, focal Barrel/PA and pair wOBA; `Rscript table1_regressions.R <pooled csv> <2025\|2026\|all>` writes `table1_{focal,cond,barrel,woba}_<season>.tex` and `_results.csv` |
+| `proxy_regressions.R` | Hitter-season run value per PA on Barrel/PA and on wOBA (`Rscript proxy_regressions.R all` for 2025-2026) -> `proxy_regressions_pooled.tex` |
+| `paper_tables.R` | Builds the paper's descriptive tables and collects the regression tables into `../tables/` |
 | `all11.R` | The 11 pre-specified interactions on the pooled data; writes `all11_pooled.csv` and `all11_by_season.csv`. Run `Rscript all11.R <pooled csv> cond` for the reverse-direction version (outcome = predecessor's run value per PA), which writes `all11_cond_pooled.csv` and `all11_cond_by_season.csv` |
 | `trait_reliability.py` -> `trait_reliability.csv` | Odd/even PA split-half reliability (Spearman-Brown) of each trait |
 | `reducedformregs2.do`, `reducedformregs2.R` | Stata specification from the project's advisor (2025-only, run-value models 1-9) and its R translation (output files are not tracked) |

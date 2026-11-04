@@ -58,3 +58,39 @@ exp_tab <- function(outcome, label) c("\\begin{table}[htbp]", "\\centering",
   "\\end{minipage}", "\\end{table}")
 writeLines(exp_tab("focal $\\Delta$ Run Expectancy", "expectations_focal"), file.path(out, "expected_signs_focal.tex"))
 writeLines(exp_tab("conditional $\\Delta$ Run Expectancy", "expectations_cond"), file.path(out, "expected_signs_cond.tex"))
+
+# ---- Table: composition by pair handedness ----
+df$same <- df$focal_hitterside == df$conditional_hitterside
+side <- function(d, lab) {
+  g <- d %>% group_by(same) %>% summarise(n = n(), pa = sum(num_pas), .groups = "drop") %>% arrange(desc(same))
+  sprintf("%s & %s & %s & %.1f & %s & %.1f \\\\", c(lab, ""), c("Same-side", "Opposite-side"),
+          fmt(g$n), 100 * g$n / sum(g$n), fmt(g$pa), 100 * g$pa / sum(g$pa))
+}
+tex <- c("\\begin{table}[htbp]", "\\centering", "\\caption{Composition of the sample by pair handedness}",
+  "\\label{tab:pair_side}", "\\begin{tabular}{llrrrr}", "\\hline\\hline",
+  "Sample & Pair type & Pairs & \\% of pairs & PAs & \\% of PAs \\\\", "\\hline",
+  side(df, "Pooled"), "\\hline", side(filter(df, season == 2025), "2025"), "\\hline",
+  side(filter(df, season == 2026), "2026"), "\\hline\\hline", "\\end{tabular}", "\\par\\smallskip", "\\footnotesize",
+  "\\textit{Notes:} A pair is same-side when the focal and conditional hitters bat from the same side (switch-hitters are assigned the side recorded in the data). PAs are the sum of \\texttt{num\\_pas} across pairs.",
+  "\\end{table}")
+writeLines(tex, file.path(out, "pair_side_composition.tex"))
+
+# ---- Regression tables: copied from table1_regressions.R / proxy_regressions.R output, captions as in the paper ----
+# Run table1_regressions.R (2025 and 2026) and proxy_regressions.R first.
+for (k in c("focal", "cond")) for (y in c(2025, 2026)) {
+  s <- paste(readLines(sprintf("table1_%s_%d.tex", k, y)), collapse = "\n")
+  s <- sub("delta run expectancy\\}", sprintf("$\\\\Delta$ Run Expectancy, %d}", y), s)
+  writeLines(s, file.path(out, sprintf("interaction_%s_%d.tex", k, y)))
+}
+for (y in c(2025, 2026)) {
+  s <- paste(readLines(sprintf("table1_barrel_%d.tex", y)), collapse = "\n")
+  s <- sub("Barrel/PA\\}", sprintf("Barrel/PA, %d}", y), s)
+  writeLines(s, file.path(out, sprintf("interaction_barrel_%d.tex", y)))
+}
+p <- paste(readLines("proxy_regressions_pooled.tex"), collapse = "\n")
+p <- sub("^\\s*\\\\begingroup\\s*\\\\centering\\s*", "", p)
+p <- sub("\\\\par \\\\raggedright.*$", "", p)
+writeLines(c("\\begin{table}[H]", "\\centering", "\\caption{Barrel/PA and wOBA as proxies for run expectancy}",
+  "\\label{tab:proxy}", trimws(p, "right"), "", "\\vspace{4pt}", "\\begin{minipage}{0.8\\textwidth}", "\\centering\\footnotesize",
+  "\\textit{Notes:} 2025--2026 hitter-seasons, weighted by plate appearances. Standard errors clustered by hitter in parentheses. $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.1$.",
+  "\\end{minipage}", "\\end{table}"), file.path(out, "proxy_regressions.tex"))
