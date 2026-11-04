@@ -3,7 +3,7 @@ import pandas as pd, numpy as np, glob, os
 os.chdir(Path(__file__).resolve().parent.parent)  # repo root
 rng = np.random.default_rng(1)
 REPS = 30
-dirs = {2023: "statcast_pitch_cache_2023", 2024: "statcast_pitch_cache_2024", 2025: "statcast_pitch_cache_2025", 2026: "statcast_pitch_cache_2026"}
+dirs = {2025: "statcast_pitch_cache_2025", 2026: "statcast_pitch_cache_2026"}
 SW = {"swinging_strike","swinging_strike_blocked","foul","foul_tip","hit_into_play","hit_into_play_no_out","hit_into_play_score","foul_bunt","missed_bunt"}
 CT = {"foul","hit_into_play","hit_into_play_no_out","hit_into_play_score","foul_bunt"}
 SS = {"swinging_strike","swinging_strike_blocked","foul_tip","missed_bunt"}

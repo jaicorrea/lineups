@@ -6,8 +6,8 @@ season column distinguishes them), so a pair that co-occurred in both seasons
 contributes two observations -- roughly doubling N and giving the split-half /
 high-PA-cutoff checks real statistical power.
 
-Applies the same Nitro_med_xy unpacking + nitro_dist derivation as
-tablesort_scratch.py, and writes a single pooled CSV.
+Unpacks Nitro_med_xy into nitro_x / nitro_z, derives nitro_dist, and writes a
+single pooled CSV.
 
 Usage:
     python pool_seasons.py 2024 2025

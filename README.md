@@ -33,7 +33,7 @@ Pairing rule (`lineup_context.py`): the predecessor is the previous batter *on t
 
 **Truncated PAs are disregarded in every season.** Statcast's `events == 'truncated_pa'` rows (a plate appearance cut short, almost always by a third-out baserunning play such as a caught stealing, and in two 2025 cases a walk-off mid-at-bat) are dropped before any pairing, baseline or team calculation (`build_season.py`, `attach_team.py`, `build_team_lookup.py`, `trait_reliability.py`). They are dropped so that no hitter is his own predecessor: the batter leads off the next inning, so keeping the row paired him with himself (213 self-pairs in 2026 before the filter). The original hand-downloaded 2025 files never contained these rows, but the pulled seasons do (319 in 2025 and 329 in 2026), so the filter is applied to both seasons to keep them consistent. The 2026 raw PA files are left as Savant delivered them; the 2025 PA files were filtered when they were set up (see below). In every season the pitches from truncated PAs still count toward the season swing and bat-tracking baselines (the pitch caches are not filtered).
 
-Earlier-iteration (2025-only) scripts still in this folder and not used for the current results: `statcast_research.py`, `run_analysis.py`, `lineup_extract.py`, `research_scratch.py`, `tablesort_scratch.py`, `swing_pct_statcast.py`.
+Earlier-iteration (2025-only) scripts still in this folder and not used for the current results: `statcast_research.py`, `run_analysis.py`, `lineup_extract.py`, `swing_pct_statcast.py`.
 
 ### `analysis/` — final analysis
 | File | Purpose |
